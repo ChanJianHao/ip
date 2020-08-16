@@ -1,6 +1,5 @@
 public class Duke {
     public static void main(String[] args) {
-
         // Print logo
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -16,6 +15,5 @@ public class Duke {
         System.out.println("____________________________________________________________");
         System.out.println(" Bye. Hope to see you again soon!");
         System.out.println("____________________________________________________________");
-
     }
 }
