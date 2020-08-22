@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -21,7 +22,6 @@ public class Duke {
                     + "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n";
 
 
-
     public static void main(String[] args) {
         // Print logo
         System.out.println(NEKOBOT_LOGO);
@@ -32,8 +32,9 @@ public class Duke {
         System.out.println(" What can I do for you?");
         System.out.println(HORIZONTAL_LINE);
 
-
+        ArrayList<String> dataList = new ArrayList<>();
         Scanner userInput = new Scanner(System.in);
+
         while (true) {
             String input = userInput.nextLine();
 
@@ -43,9 +44,15 @@ public class Duke {
                 System.out.println(HORIZONTAL_LINE);
 
                 return;
+            } else if (input.equals("list")) {
+                for (int i = 0; i < dataList.size(); i++) {
+                    System.out.println(" " + (i + 1) + ". " + dataList.get(i));
+                }
             } else {
+                dataList.add(input);
+
                 System.out.println(HORIZONTAL_LINE);
-                System.out.println(input);
+                System.out.println(" added: " + input);
                 System.out.println(HORIZONTAL_LINE);
             }
         }
