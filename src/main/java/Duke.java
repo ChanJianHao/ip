@@ -51,6 +51,12 @@ public class Duke {
                 }
             } else if (input.startsWith("done ")) {
                 int doneTaskNumber = Integer.parseInt(input.replaceAll("[\\D]", ""));
+
+                if (doneTaskNumber > Task.getGetTotalTask() || doneTaskNumber <= 0) {
+                    System.out.println("That's an invalid task number! *meoww*");
+                    continue;
+                }
+
                 Task tempTask = taskList.get(doneTaskNumber - 1);
 
                 tempTask.markAsDone();
