@@ -5,11 +5,21 @@ public class Duke {
             "____________________________________________________________";
 
     private static final String NEKOBOT_LOGO =
-            " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n"
+                    + "░░░░░░░░░░▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄░░░░░░░░░\n"
+                    + "░░░░░░░░▄▀░░░░░░░░░░░░▄░░░░░░░▀▄░░░░░░░\n"
+                    + "░░░░░░░░█░░▄░░░░▄░░░░░░░░░░░░░░█░░░░░░░\n"
+                    + "░░░░░░░░█░░░░░░░░░░░░▄█▄▄░░▄░░░█░▄▄▄░░░\n"
+                    + "░▄▄▄▄▄░░█░░░░░░▀░░░░▀█░░▀▄░░░░░█▀▀░██░░\n"
+                    + "░██▄▀██▄█░░░▄░░░░░░░██░░░░▀▀▀▀▀░░░░██░░\n"
+                    + "░░▀██▄▀██░░░░░░░░▀░██▀░░░░░░░░░░░░░▀██░\n"
+                    + "░░░░▀████░▀░░░░▄░░░██░░░▄█░░░░▄░▄█░░██░\n"
+                    + "░░░░░░░▀█░░░░▄░░░░░██░░░░▄░░░▄░░▄░░░██░\n"
+                    + "░░░░░░░▄█▄░░░░░░░░░░░▀▄░░▀▀▀▀▀▀▀▀░░▄▀░░\n"
+                    + "░░░░░░█▀▀█████████▀▀▀▀████████████▀░░░░\n"
+                    + "░░░░░░████▀░░███▀░░░░░░▀███░░▀██▀░░░░░░\n"
+                    + "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n";
+
 
 
     public static void main(String[] args) {
@@ -18,7 +28,7 @@ public class Duke {
 
         // DUKE Greet
         System.out.println(HORIZONTAL_LINE);
-        System.out.println(" Hello! I'm Duke");
+        System.out.println(" Hello! I'm Neko-bot *meow*");
         System.out.println(" What can I do for you?");
         System.out.println(HORIZONTAL_LINE);
 
@@ -26,19 +36,18 @@ public class Duke {
         Scanner userInput = new Scanner(System.in);
         while (true) {
             String input = userInput.nextLine();
-            System.out.println(HORIZONTAL_LINE);
-            System.out.println(input);
-            System.out.println(HORIZONTAL_LINE);
 
-            if (userInput.equals("bye")) {
+            if (input.equals("bye")) {
+                System.out.println(HORIZONTAL_LINE);
                 System.out.println(" Bye. Hope to see you again soon!");
+                System.out.println(HORIZONTAL_LINE);
 
+                return;
+            } else {
+                System.out.println(HORIZONTAL_LINE);
+                System.out.println(input);
+                System.out.println(HORIZONTAL_LINE);
             }
         }
-
-
-//        System.out.println("____________________________________________________________");
-//        System.out.println(" Bye. Hope to see you again soon!");
-//        System.out.println("____________________________________________________________");
     }
 }
