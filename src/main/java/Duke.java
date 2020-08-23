@@ -38,6 +38,9 @@ public class Duke {
         while (true) {
             String input = userInput.nextLine();
 
+            // For handling statements where done is a task and not command
+            long spacesInInput = input.chars().filter(ch -> ch == ' ').count();
+
             if (input.equals("bye")) {
                 System.out.println(HORIZONTAL_LINE);
                 System.out.println(" Bye. Hope to see you again soon!");
@@ -49,7 +52,7 @@ public class Duke {
                     Task tempTask = taskList.get(i);
                     System.out.println(" " + (i + 1) + ". " + tempTask.getStatusIconAndDesc());
                 }
-            } else if (input.startsWith("done ")) {
+            } else if (input.startsWith("done ") && spacesInInput == 1 && input.matches(".*\\d.*")) {
                 int doneTaskNumber = Integer.parseInt(input.replaceAll("[\\D]", ""));
 
                 if (doneTaskNumber > Task.getGetTotalTask() || doneTaskNumber <= 0) {
