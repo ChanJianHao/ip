@@ -22,7 +22,7 @@ public class Task {
         return description;
     }
 
-    public String getStatusIconAndDesc() {
+    public String toString() {
         return "[" + getStatusIcon() + "] " + description;
     }
 

@@ -5,7 +5,7 @@ public class Duke {
     private static final String HORIZONTAL_LINE =
             "____________________________________________________________";
 
-    private static final String NEKOBOT_LOGO =
+    private static final String CAT_LOGO =
             "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n"
                     + "░░░░░░░░░░▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄░░░░░░░░░\n"
                     + "░░░░░░░░▄▀░░░░░░░░░░░░▄░░░░░░░▀▄░░░░░░░\n"
@@ -24,9 +24,9 @@ public class Duke {
 
     public static void main(String[] args) {
         // Print logo
-        System.out.println(NEKOBOT_LOGO);
+        System.out.println(CAT_LOGO);
 
-        // DUKE Greet
+        // Greet
         System.out.println(HORIZONTAL_LINE);
         System.out.println(" Hello! I'm Neko-bot *meow*");
         System.out.println(" What can I do for you?");
@@ -36,45 +36,95 @@ public class Duke {
         Scanner userInput = new Scanner(System.in);
 
         while (true) {
+            String taskDescription;
             String input = userInput.nextLine();
 
-            // For handling statements where done is a task and not command
-            long spacesInInput = input.chars().filter(ch -> ch == ' ').count();
+            String[] splitInput = input.split(" ", 2);
 
-            if (input.equals("bye")) {
+            if (splitInput.length > 1) {
+                taskDescription = splitInput[1];
+            } else {
+                taskDescription = "";
+            }
+
+            // Main menu navigation
+            if (splitInput[0].equals("bye")) {
                 System.out.println(HORIZONTAL_LINE);
                 System.out.println(" Bye. Hope to see you again soon!");
                 System.out.println(HORIZONTAL_LINE);
 
                 return;
-            } else if (input.equals("list")) {
+            } else if (splitInput[0].equals("list")) {
                 for (int i = 0; i < taskList.size(); i++) {
                     Task tempTask = taskList.get(i);
-                    System.out.println(" " + (i + 1) + ". " + tempTask.getStatusIconAndDesc());
+                    System.out.println(" " + (i + 1) + "." + tempTask);
                 }
-            } else if (input.startsWith("done ") && spacesInInput == 1 && input.matches(".*\\d.*")) {
-                int doneTaskNumber = Integer.parseInt(input.replaceAll("[\\D]", ""));
-
-                if (doneTaskNumber > Task.getGetTotalTask() || doneTaskNumber <= 0) {
+            } else if (splitInput[0].equals("done")) {
+                if (taskDescription == "") {
+                    System.out.println("That's an invalid task number! *meoww*");
+                    continue;
+                } else if (Integer.parseInt(taskDescription) > Task.getGetTotalTask()
+                        || Integer.parseInt(taskDescription) <= 0) {
                     System.out.println("That's an invalid task number! *meoww*");
                     continue;
                 }
 
-                Task tempTask = taskList.get(doneTaskNumber - 1);
+                Task tempTask = taskList.get(Integer.parseInt(taskDescription) - 1);
 
                 tempTask.markAsDone();
 
                 System.out.println(HORIZONTAL_LINE);
                 System.out.println(" Nice! I've marked this task as done: ");
-                System.out.println("   " + tempTask.getStatusIconAndDesc());
+                System.out.println("   " + tempTask);
                 System.out.println(HORIZONTAL_LINE);
-            } else {
-                Task newTask = new Task(input);
+            } else if (splitInput[0].equals("todo")) {
+                Todo newTask = new Todo(taskDescription);
                 taskList.add(newTask);
 
                 System.out.println(HORIZONTAL_LINE);
-                System.out.println(" added: " + input);
+                System.out.println(" Got it. I've added this task:");
+                System.out.println("   " + newTask);
+                System.out.println(" Now you have " + taskList.size() + " tasks in the list.");
                 System.out.println(HORIZONTAL_LINE);
+            } else if (splitInput[0].equals("deadline")) {
+                String[] deadlineSplit = taskDescription.split("/by", 2);
+
+                String by;
+
+                if (deadlineSplit.length > 1) {
+                    by = deadlineSplit[1];
+                } else {
+                    by = "";
+                }
+
+                Deadline newTask = new Deadline(deadlineSplit[0], by);
+                taskList.add(newTask);
+
+                System.out.println(HORIZONTAL_LINE);
+                System.out.println(" Got it. I've added this task:");
+                System.out.println("   " + newTask);
+                System.out.println(" Now you have " + taskList.size() + " tasks in the list.");
+                System.out.println(HORIZONTAL_LINE);
+            } else if (splitInput[0].equals("event")) {
+                String[] eventSplit = taskDescription.split("/at", 2);
+                String at;
+
+                if (eventSplit.length > 1) {
+                    at = eventSplit[1];
+                } else {
+                    at = "";
+                }
+
+                Event newTask = new Event(eventSplit[0], at);
+                taskList.add(newTask);
+
+                System.out.println(HORIZONTAL_LINE);
+                System.out.println(" Got it. I've added this task:");
+                System.out.println("   " + newTask);
+                System.out.println(" Now you have " + taskList.size() + " tasks in the list.");
+                System.out.println(HORIZONTAL_LINE);
+            } else {
+                System.out.println("That's an invalid task input! *angry meoww noises*");
             }
         }
     }
