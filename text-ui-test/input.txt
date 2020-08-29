@@ -1,0 +1,34 @@
+this won't work
+neither will THIS 935258301032042
+todo Check if things work!
+list
+done 0
+done -1
+done 99
+done 1
+list
+todo hello world
+todo bye worldddd 1234568090($&@($(!(!))$
+list
+event LAN PARTY IN LEAGUE /at TONIGHT
+deadline CS2113T homework!! ARGHGHHGHG /by Friday next week 2359
+list
+event CS2101 MEETING at PLAZA /at 11111
+done 4
+deadline KILL MONSTERS /by
+list
+done 5
+list
+todo borrow book
+list
+deadline return book /by Sunday
+event project meeting /at Mon 2-4pm
+deadline do homework /by no idea :-p
+list
+done 6
+done 7
+done 8
+list
+done 2
+list
+bye

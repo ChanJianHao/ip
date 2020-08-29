@@ -1,7 +1,175 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+░░░░░░░░░░▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄░░░░░░░░░
+░░░░░░░░▄▀░░░░░░░░░░░░▄░░░░░░░▀▄░░░░░░░
+░░░░░░░░█░░▄░░░░▄░░░░░░░░░░░░░░█░░░░░░░
+░░░░░░░░█░░░░░░░░░░░░▄█▄▄░░▄░░░█░▄▄▄░░░
+░▄▄▄▄▄░░█░░░░░░▀░░░░▀█░░▀▄░░░░░█▀▀░██░░
+░██▄▀██▄█░░░▄░░░░░░░██░░░░▀▀▀▀▀░░░░██░░
+░░▀██▄▀██░░░░░░░░▀░██▀░░░░░░░░░░░░░▀██░
+░░░░▀████░▀░░░░▄░░░██░░░▄█░░░░▄░▄█░░██░
+░░░░░░░▀█░░░░▄░░░░░██░░░░▄░░░▄░░▄░░░██░
+░░░░░░░▄█▄░░░░░░░░░░░▀▄░░▀▀▀▀▀▀▀▀░░▄▀░░
+░░░░░░█▀▀█████████▀▀▀▀████████████▀░░░░
+░░░░░░████▀░░███▀░░░░░░▀███░░▀██▀░░░░░░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
+____________________________________________________________
+ Hello! I'm Neko-bot *meow*
+ What can I do for you?
+____________________________________________________________
+That's an invalid task input! *angry meoww noises*
+That's an invalid task input! *angry meoww noises*
+____________________________________________________________
+ Got it. I've added this task:
+   [T][✘] Check if things work!
+ Now you have 1 tasks in the list.
+____________________________________________________________
+ 1.[T][✘] Check if things work!
+That's an invalid task number! *meoww*
+That's an invalid task number! *meoww*
+That's an invalid task number! *meoww*
+____________________________________________________________
+ Nice! I've marked this task as done: 
+   [T][✓] Check if things work!
+____________________________________________________________
+ 1.[T][✓] Check if things work!
+____________________________________________________________
+ Got it. I've added this task:
+   [T][✘] hello world
+ Now you have 2 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ Got it. I've added this task:
+   [T][✘] bye worldddd 1234568090($&@($(!(!))$
+ Now you have 3 tasks in the list.
+____________________________________________________________
+ 1.[T][✓] Check if things work!
+ 2.[T][✘] hello world
+ 3.[T][✘] bye worldddd 1234568090($&@($(!(!))$
+____________________________________________________________
+ Got it. I've added this task:
+   [E][✘] LAN PARTY IN LEAGUE (at: TONIGHT)
+ Now you have 4 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ Got it. I've added this task:
+   [D][✘] CS2113T homework!! ARGHGHHGHG (by: Friday next week 2359)
+ Now you have 5 tasks in the list.
+____________________________________________________________
+ 1.[T][✓] Check if things work!
+ 2.[T][✘] hello world
+ 3.[T][✘] bye worldddd 1234568090($&@($(!(!))$
+ 4.[E][✘] LAN PARTY IN LEAGUE (at: TONIGHT)
+ 5.[D][✘] CS2113T homework!! ARGHGHHGHG (by: Friday next week 2359)
+____________________________________________________________
+ Got it. I've added this task:
+   [E][✘] CS2101 MEETING at PLAZA (at: 11111)
+ Now you have 6 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ Nice! I've marked this task as done: 
+   [E][✓] LAN PARTY IN LEAGUE (at: TONIGHT)
+____________________________________________________________
+____________________________________________________________
+ Got it. I've added this task:
+   [D][✘] KILL MONSTERS (by:)
+ Now you have 7 tasks in the list.
+____________________________________________________________
+ 1.[T][✓] Check if things work!
+ 2.[T][✘] hello world
+ 3.[T][✘] bye worldddd 1234568090($&@($(!(!))$
+ 4.[E][✓] LAN PARTY IN LEAGUE (at: TONIGHT)
+ 5.[D][✘] CS2113T homework!! ARGHGHHGHG (by: Friday next week 2359)
+ 6.[E][✘] CS2101 MEETING at PLAZA (at: 11111)
+ 7.[D][✘] KILL MONSTERS (by:)
+____________________________________________________________
+ Nice! I've marked this task as done: 
+   [D][✓] CS2113T homework!! ARGHGHHGHG (by: Friday next week 2359)
+____________________________________________________________
+ 1.[T][✓] Check if things work!
+ 2.[T][✘] hello world
+ 3.[T][✘] bye worldddd 1234568090($&@($(!(!))$
+ 4.[E][✓] LAN PARTY IN LEAGUE (at: TONIGHT)
+ 5.[D][✓] CS2113T homework!! ARGHGHHGHG (by: Friday next week 2359)
+ 6.[E][✘] CS2101 MEETING at PLAZA (at: 11111)
+ 7.[D][✘] KILL MONSTERS (by:)
+____________________________________________________________
+ Got it. I've added this task:
+   [T][✘] borrow book
+ Now you have 8 tasks in the list.
+____________________________________________________________
+ 1.[T][✓] Check if things work!
+ 2.[T][✘] hello world
+ 3.[T][✘] bye worldddd 1234568090($&@($(!(!))$
+ 4.[E][✓] LAN PARTY IN LEAGUE (at: TONIGHT)
+ 5.[D][✓] CS2113T homework!! ARGHGHHGHG (by: Friday next week 2359)
+ 6.[E][✘] CS2101 MEETING at PLAZA (at: 11111)
+ 7.[D][✘] KILL MONSTERS (by:)
+ 8.[T][✘] borrow book
+____________________________________________________________
+ Got it. I've added this task:
+   [D][✘] return book (by: Sunday)
+ Now you have 9 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ Got it. I've added this task:
+   [E][✘] project meeting (at: Mon 2-4pm)
+ Now you have 10 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+ Got it. I've added this task:
+   [D][✘] do homework (by: no idea :-p)
+ Now you have 11 tasks in the list.
+____________________________________________________________
+ 1.[T][✓] Check if things work!
+ 2.[T][✘] hello world
+ 3.[T][✘] bye worldddd 1234568090($&@($(!(!))$
+ 4.[E][✓] LAN PARTY IN LEAGUE (at: TONIGHT)
+ 5.[D][✓] CS2113T homework!! ARGHGHHGHG (by: Friday next week 2359)
+ 6.[E][✘] CS2101 MEETING at PLAZA (at: 11111)
+ 7.[D][✘] KILL MONSTERS (by:)
+ 8.[T][✘] borrow book
+ 9.[D][✘] return book (by: Sunday)
+ 10.[E][✘] project meeting (at: Mon 2-4pm)
+ 11.[D][✘] do homework (by: no idea :-p)
+____________________________________________________________
+ Nice! I've marked this task as done: 
+   [E][✓] CS2101 MEETING at PLAZA (at: 11111)
+____________________________________________________________
+____________________________________________________________
+ Nice! I've marked this task as done: 
+   [D][✓] KILL MONSTERS (by:)
+____________________________________________________________
+____________________________________________________________
+ Nice! I've marked this task as done: 
+   [T][✓] borrow book
+____________________________________________________________
+ 1.[T][✓] Check if things work!
+ 2.[T][✘] hello world
+ 3.[T][✘] bye worldddd 1234568090($&@($(!(!))$
+ 4.[E][✓] LAN PARTY IN LEAGUE (at: TONIGHT)
+ 5.[D][✓] CS2113T homework!! ARGHGHHGHG (by: Friday next week 2359)
+ 6.[E][✓] CS2101 MEETING at PLAZA (at: 11111)
+ 7.[D][✓] KILL MONSTERS (by:)
+ 8.[T][✓] borrow book
+ 9.[D][✘] return book (by: Sunday)
+ 10.[E][✘] project meeting (at: Mon 2-4pm)
+ 11.[D][✘] do homework (by: no idea :-p)
+____________________________________________________________
+ Nice! I've marked this task as done: 
+   [T][✓] hello world
+____________________________________________________________
+ 1.[T][✓] Check if things work!
+ 2.[T][✓] hello world
+ 3.[T][✘] bye worldddd 1234568090($&@($(!(!))$
+ 4.[E][✓] LAN PARTY IN LEAGUE (at: TONIGHT)
+ 5.[D][✓] CS2113T homework!! ARGHGHHGHG (by: Friday next week 2359)
+ 6.[E][✓] CS2101 MEETING at PLAZA (at: 11111)
+ 7.[D][✓] KILL MONSTERS (by:)
+ 8.[T][✓] borrow book
+ 9.[D][✘] return book (by: Sunday)
+ 10.[E][✘] project meeting (at: Mon 2-4pm)
+ 11.[D][✘] do homework (by: no idea :-p)
+____________________________________________________________
+ Bye. Hope to see you again soon!
+____________________________________________________________
