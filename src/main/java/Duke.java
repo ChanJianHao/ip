@@ -52,17 +52,11 @@ public class Duke {
     }
 
     private static boolean processCommand(ArrayList<Task> taskList, Scanner userInput) {
-        String taskDescription;
         String input = userInput.nextLine();
 
         // Split string into 2's using space
         String[] splitInput = input.split(REGEX_SINGLE_SPACE, 2);
-
-        if (splitInput.length > 1) {
-            taskDescription = splitInput[1];
-        } else {
-            taskDescription = "";
-        }
+        String taskDescription = processSplitString(splitInput);
 
         // Main menu navigation
         switch (splitInput[0]) {
@@ -91,6 +85,16 @@ public class Duke {
         return true;
     }
 
+    private static String processSplitString(String[] splitInput) {
+        String taskDescription;
+        if (splitInput.length > 1) {
+            taskDescription = splitInput[1];
+        } else {
+            taskDescription = "";
+        }
+        return taskDescription;
+    }
+
     private static void processListCommand(ArrayList<Task> taskList) {
         for (int i = 0; i < taskList.size(); i++) {
             Task tempTask = taskList.get(i);
@@ -105,13 +109,7 @@ public class Duke {
 
     private static void processEventCommand(ArrayList<Task> taskList, String taskDescription) {
         String[] eventSplit = taskDescription.split("/at", 2);
-        String at;
-
-        if (eventSplit.length > 1) {
-            at = eventSplit[1];
-        } else {
-            at = "";
-        }
+        String at = processSplitString(eventSplit);
 
         Event newTask = new Event(eventSplit[0], at);
         addTask(taskList, newTask);
@@ -119,14 +117,7 @@ public class Duke {
 
     private static void processDeadlineCommand(ArrayList<Task> taskList, String taskDescription) {
         String[] deadlineSplit = taskDescription.split("/by", 2);
-
-        String by;
-
-        if (deadlineSplit.length > 1) {
-            by = deadlineSplit[1];
-        } else {
-            by = "";
-        }
+        String by = processSplitString(deadlineSplit);
 
         Deadline newTask = new Deadline(deadlineSplit[0], by);
         addTask(taskList, newTask);
