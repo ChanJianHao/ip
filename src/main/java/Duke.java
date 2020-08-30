@@ -25,7 +25,9 @@ public class Duke {
     private static final String COMMAND_TODO = "todo";
     private static final String COMMAND_DEADLINE = "deadline";
     private static final String COMMAND_EVENT = "event";
-    public static final String REGEX_SINGLE_SPACE = " ";
+    private static final String REGEX_SINGLE_SPACE = " ";
+    private static final String REGEX_EVENT_SLASH_AT = "/at";
+    private static final String REGEX_DEADLINE_SLASH_BY = "/by";
 
     public static void main(String[] args) {
         printWelcome();
@@ -108,7 +110,7 @@ public class Duke {
     }
 
     private static void processEventCommand(ArrayList<Task> taskList, String taskDescription) {
-        String[] eventSplit = taskDescription.split("/at", 2);
+        String[] eventSplit = taskDescription.split(REGEX_EVENT_SLASH_AT, 2);
         String at = processSplitString(eventSplit);
 
         Event newTask = new Event(eventSplit[0], at);
@@ -116,7 +118,7 @@ public class Duke {
     }
 
     private static void processDeadlineCommand(ArrayList<Task> taskList, String taskDescription) {
-        String[] deadlineSplit = taskDescription.split("/by", 2);
+        String[] deadlineSplit = taskDescription.split(REGEX_DEADLINE_SLASH_BY, 2);
         String by = processSplitString(deadlineSplit);
 
         Deadline newTask = new Deadline(deadlineSplit[0], by);
