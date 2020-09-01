@@ -34,6 +34,9 @@ public class Duke {
         runMainMenu();
     }
 
+    /**
+     * Prints the welcome message which includes logo.
+     */
     private static void printWelcome() {
         System.out.println(CAT_LOGO);
 
@@ -43,6 +46,9 @@ public class Duke {
         System.out.println(HORIZONTAL_LINE);
     }
 
+    /**
+     * Runs main menu for the program. Does a while loop until user inputs bye.
+     */
     private static void runMainMenu() {
         boolean isProcessingCommand = true;
         ArrayList<Task> taskList = new ArrayList<>();
@@ -53,6 +59,13 @@ public class Duke {
         }
     }
 
+    /**
+     * Processes user input from main menu.
+     *
+     * @param taskList  ArrayList of all the tasks.
+     * @param userInput User input string.
+     * @return Returns true unless user enters bye, which would terminate main menu.
+     */
     private static boolean processCommand(ArrayList<Task> taskList, Scanner userInput) {
         String input = userInput.nextLine();
 
@@ -87,6 +100,12 @@ public class Duke {
         return true;
     }
 
+    /**
+     * Checks split string length to handle cases when task description is empty.
+     *
+     * @param splitInput Array containing split string.
+     * @return Returns task description from the split string.
+     */
     private static String processSplitString(String[] splitInput) {
         String taskDescription;
         if (splitInput.length > 1) {
@@ -97,6 +116,11 @@ public class Duke {
         return taskDescription;
     }
 
+    /**
+     * Lists all tasks.
+     *
+     * @param taskList ArrayList containing tasks.
+     */
     private static void processListCommand(ArrayList<Task> taskList) {
         for (int i = 0; i < taskList.size(); i++) {
             Task tempTask = taskList.get(i);
@@ -104,11 +128,23 @@ public class Duke {
         }
     }
 
+    /**
+     * Adds todo task.
+     *
+     * @param taskList        ArrayList containing tasks.
+     * @param taskDescription Task description for the newly added task.
+     */
     private static void processTodoCommand(ArrayList<Task> taskList, String taskDescription) {
         Todo newTask = new Todo(taskDescription);
         addTask(taskList, newTask);
     }
 
+    /**
+     * Adds event task.
+     *
+     * @param taskList        ArrayList containing tasks.
+     * @param taskDescription Task description for the newly added task.
+     */
     private static void processEventCommand(ArrayList<Task> taskList, String taskDescription) {
         String[] eventSplit = taskDescription.split(REGEX_EVENT_SLASH_AT, 2);
         String at = processSplitString(eventSplit);
@@ -117,6 +153,12 @@ public class Duke {
         addTask(taskList, newTask);
     }
 
+    /**
+     * Adds deadline task.
+     *
+     * @param taskList        ArrayList containing tasks.
+     * @param taskDescription Task description for the newly added task.
+     */
     private static void processDeadlineCommand(ArrayList<Task> taskList, String taskDescription) {
         String[] deadlineSplit = taskDescription.split(REGEX_DEADLINE_SLASH_BY, 2);
         String by = processSplitString(deadlineSplit);
@@ -125,6 +167,12 @@ public class Duke {
         addTask(taskList, newTask);
     }
 
+    /**
+     * Executes adding task to provided task list and prints success message.
+     *
+     * @param taskList ArrayList containing tasks.
+     * @param newTask  New task to be added.
+     */
     private static void addTask(ArrayList<Task> taskList, Task newTask) {
         taskList.add(newTask);
 
@@ -135,6 +183,12 @@ public class Duke {
         System.out.println(HORIZONTAL_LINE);
     }
 
+    /**
+     * Marks an existing task as done.
+     *
+     * @param taskList        ArrayList containing tasks.
+     * @param taskDescription Task index to be marked as done.
+     */
     private static void processDoneCommand(ArrayList<Task> taskList, String taskDescription) {
         // Checks if invalid done number is provided
         if (taskDescription.equals("")) {
@@ -154,6 +208,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Prints the good bye message when bye is received.
+     */
     private static void printGoodbye() {
         System.out.println(HORIZONTAL_LINE);
         System.out.println(" Bye. Hope to see you again soon!");
