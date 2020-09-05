@@ -25,9 +25,15 @@ public class Duke {
     private static final String COMMAND_TODO = "todo";
     private static final String COMMAND_DEADLINE = "deadline";
     private static final String COMMAND_EVENT = "event";
+
     private static final String REGEX_SINGLE_SPACE = " ";
     private static final String REGEX_EVENT_SLASH_AT = "/at";
     private static final String REGEX_DEADLINE_SLASH_BY = "/by";
+
+    public static final String EXCEPTION_INVALID_TASK_NUMBER = "That's an invalid task number!";
+    public static final String EXCEPTION_INVALID_COMMAND = "I'm sorry, but I don't know what that means.";
+    public static final String EXCEPTION_EMPTY_DESCRIPTION = "The description of a task cannot be empty.";
+    public static final String EXCEPTION_EMPTY_DATETIME = "Did you forget to include the datetime?";
 
     public static void main(String[] args) {
         printWelcome();
@@ -55,7 +61,12 @@ public class Duke {
         Scanner userInput = new Scanner(System.in);
 
         while (isProcessingCommand) {
-            isProcessingCommand = processCommand(taskList, userInput);
+            try {
+                isProcessingCommand = processCommand(taskList, userInput);
+            } catch (DukeException exceptionMessage) {
+                System.out.println(exceptionMessage);
+            }
+
         }
     }
 
@@ -66,7 +77,7 @@ public class Duke {
      * @param userInput User input string.
      * @return Returns true unless user enters bye, which would terminate main menu.
      */
-    private static boolean processCommand(ArrayList<Task> taskList, Scanner userInput) {
+    private static boolean processCommand(ArrayList<Task> taskList, Scanner userInput) throws DukeException {
         String input = userInput.nextLine();
 
         // Split string into 2's using space
@@ -94,8 +105,7 @@ public class Duke {
             processEventCommand(taskList, taskDescription);
             break;
         default:
-            System.out.println("That's an invalid task input! *angry meoww noises*");
-            break;
+            throw new DukeException(EXCEPTION_INVALID_COMMAND);
         }
         return true;
     }
@@ -134,7 +144,8 @@ public class Duke {
      * @param taskList        ArrayList containing tasks.
      * @param taskDescription Task description for the newly added task.
      */
-    private static void processTodoCommand(ArrayList<Task> taskList, String taskDescription) {
+    private static void processTodoCommand(ArrayList<Task> taskList, String taskDescription) throws DukeException {
+        checkTaskDescription(taskDescription);
         Todo newTask = new Todo(taskDescription);
         addTask(taskList, newTask);
     }
@@ -145,9 +156,11 @@ public class Duke {
      * @param taskList        ArrayList containing tasks.
      * @param taskDescription Task description for the newly added task.
      */
-    private static void processEventCommand(ArrayList<Task> taskList, String taskDescription) {
+    private static void processEventCommand(ArrayList<Task> taskList, String taskDescription) throws DukeException {
+        checkTaskDescription(taskDescription);
         String[] eventSplit = taskDescription.split(REGEX_EVENT_SLASH_AT, 2);
         String at = processSplitString(eventSplit);
+        checkTaskDatetime(at);
 
         Event newTask = new Event(eventSplit[0], at);
         addTask(taskList, newTask);
@@ -159,12 +172,26 @@ public class Duke {
      * @param taskList        ArrayList containing tasks.
      * @param taskDescription Task description for the newly added task.
      */
-    private static void processDeadlineCommand(ArrayList<Task> taskList, String taskDescription) {
+    private static void processDeadlineCommand(ArrayList<Task> taskList, String taskDescription) throws DukeException {
+        checkTaskDescription(taskDescription);
         String[] deadlineSplit = taskDescription.split(REGEX_DEADLINE_SLASH_BY, 2);
         String by = processSplitString(deadlineSplit);
+        checkTaskDatetime(by);
 
         Deadline newTask = new Deadline(deadlineSplit[0], by);
         addTask(taskList, newTask);
+    }
+
+    private static void checkTaskDescription(String taskDescription) throws DukeException {
+        if (taskDescription.isEmpty()) {
+            throw new DukeException(EXCEPTION_EMPTY_DESCRIPTION);
+        }
+    }
+
+    private static void checkTaskDatetime(String dateTime) throws DukeException {
+        if (dateTime.isEmpty()) {
+            throw new DukeException(EXCEPTION_EMPTY_DATETIME);
+        }
     }
 
     /**
@@ -189,13 +216,13 @@ public class Duke {
      * @param taskList        ArrayList containing tasks.
      * @param taskDescription Task index to be marked as done.
      */
-    private static void processDoneCommand(ArrayList<Task> taskList, String taskDescription) {
+    private static void processDoneCommand(ArrayList<Task> taskList, String taskDescription) throws DukeException {
         // Checks if invalid done number is provided
         if (taskDescription.equals("")) {
-            System.out.println("That's an invalid task number! *meoww*");
+            throw new DukeException(EXCEPTION_INVALID_TASK_NUMBER);
         } else if (Integer.parseInt(taskDescription) > taskList.size()
                 || Integer.parseInt(taskDescription) <= 0) {
-            System.out.println("That's an invalid task number! *meoww*");
+            throw new DukeException(EXCEPTION_INVALID_TASK_NUMBER);
         } else {
             Task tempTask = taskList.get(Integer.parseInt(taskDescription) - 1);
 
