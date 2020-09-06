@@ -183,10 +183,10 @@ public class Duke {
     }
 
     /**
-     * Checks and throw exception if the task description is empty.
+     * Checks task description validity.
      *
-     * @param taskDescription
-     * @throws DukeException
+     * @param taskDescription Task description.
+     * @throws DukeException DukeException when the string taskDescription is empty.
      */
     private static void checkTaskDescription(String taskDescription) throws DukeException {
         if (taskDescription.isEmpty()) {
@@ -195,10 +195,10 @@ public class Duke {
     }
 
     /**
-     * Checks and throw exception if the task datetime is empty.
+     * Checks task description validity.
      * 
-     * @param dateTime
-     * @throws DukeException
+     * @param dateTime Task datetime.
+     * @throws DukeException DukeException when the string datetime is empty.
      */
     private static void checkTaskDatetime(String dateTime) throws DukeException {
         if (dateTime.isEmpty()) {

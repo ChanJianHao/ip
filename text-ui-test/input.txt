@@ -1,6 +1,12 @@
 this won't work
 neither will THIS 935258301032042
 todo Check if things work!
+todo
+event
+deadline
+event without datetime
+deadline without deadline
+blahhh
 list
 done 0
 done -1
