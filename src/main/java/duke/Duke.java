@@ -1,3 +1,11 @@
+package duke;
+
+import duke.exception.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -142,7 +150,7 @@ public class Duke {
      * Adds todo task.
      *
      * @param taskList        ArrayList containing tasks.
-     * @param taskDescription Task description for the newly added task.
+     * @param taskDescription duke.task.Task description for the newly added task.
      */
     private static void processTodoCommand(ArrayList<Task> taskList, String taskDescription) throws DukeException {
         checkTaskDescription(taskDescription);
@@ -154,7 +162,7 @@ public class Duke {
      * Adds event task.
      *
      * @param taskList        ArrayList containing tasks.
-     * @param taskDescription Task description for the newly added task.
+     * @param taskDescription duke.task.Task description for the newly added task.
      */
     private static void processEventCommand(ArrayList<Task> taskList, String taskDescription) throws DukeException {
         checkTaskDescription(taskDescription);
@@ -170,7 +178,7 @@ public class Duke {
      * Adds deadline task.
      *
      * @param taskList        ArrayList containing tasks.
-     * @param taskDescription Task description for the newly added task.
+     * @param taskDescription duke.task.Task description for the newly added task.
      */
     private static void processDeadlineCommand(ArrayList<Task> taskList, String taskDescription) throws DukeException {
         checkTaskDescription(taskDescription);
@@ -185,8 +193,8 @@ public class Duke {
     /**
      * Checks task description validity.
      *
-     * @param taskDescription Task description.
-     * @throws DukeException DukeException when the string taskDescription is empty.
+     * @param taskDescription duke.task.Task description.
+     * @throws DukeException duke.exception.DukeException when the string taskDescription is empty.
      */
     private static void checkTaskDescription(String taskDescription) throws DukeException {
         if (taskDescription.isEmpty()) {
@@ -197,8 +205,8 @@ public class Duke {
     /**
      * Checks task description validity.
      * 
-     * @param dateTime Task datetime.
-     * @throws DukeException DukeException when the string datetime is empty.
+     * @param dateTime duke.task.Task datetime.
+     * @throws DukeException duke.exception.DukeException when the string datetime is empty.
      */
     private static void checkTaskDatetime(String dateTime) throws DukeException {
         if (dateTime.isEmpty()) {
@@ -226,7 +234,7 @@ public class Duke {
      * Marks an existing task as done.
      *
      * @param taskList        ArrayList containing tasks.
-     * @param taskDescription Task index to be marked as done.
+     * @param taskDescription duke.task.Task index to be marked as done.
      */
     private static void processDoneCommand(ArrayList<Task> taskList, String taskDescription) throws DukeException {
         // Checks if invalid done number is provided
