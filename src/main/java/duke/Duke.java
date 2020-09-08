@@ -31,6 +31,7 @@ public class Duke {
     private static final String COMMAND_LIST = "list";
     private static final String COMMAND_DONE = "done";
     private static final String COMMAND_TODO = "todo";
+    private static final String COMMAND_DELETE = "delete";
     private static final String COMMAND_DEADLINE = "deadline";
     private static final String COMMAND_EVENT = "event";
 
@@ -102,6 +103,9 @@ public class Duke {
             break;
         case COMMAND_DONE:
             processDoneCommand(taskList, taskDescription);
+            break;
+        case COMMAND_DELETE:
+            processDeleteCommand(taskList, taskDescription);
             break;
         case COMMAND_TODO:
             processTodoCommand(taskList, taskDescription);
@@ -231,19 +235,33 @@ public class Duke {
     }
 
     /**
-     * Marks an existing task as done.
+     * Checks if user input task number is an existing task.
      *
      * @param taskList        ArrayList containing tasks.
      * @param taskDescription duke.task.Task index to be marked as done.
+     * @return True if task number is valid.
+     * @throws DukeException Throws exception if invalid task number.
      */
-    private static void processDoneCommand(ArrayList<Task> taskList, String taskDescription) throws DukeException {
+    private static boolean checkValidTaskNumber(ArrayList<Task> taskList, String taskDescription) throws DukeException {
         // Checks if invalid done number is provided
         if (taskDescription.equals("")) {
             throw new DukeException(EXCEPTION_INVALID_TASK_NUMBER);
         } else if (Integer.parseInt(taskDescription) > taskList.size()
                 || Integer.parseInt(taskDescription) <= 0) {
             throw new DukeException(EXCEPTION_INVALID_TASK_NUMBER);
-        } else {
+        }
+
+        return true;
+    }
+
+    /**
+     * Marks an existing task as done.
+     *
+     * @param taskList        ArrayList containing tasks.
+     * @param taskDescription duke.task.Task index to be marked as done.
+     */
+    private static void processDoneCommand(ArrayList<Task> taskList, String taskDescription) throws DukeException {
+        if (checkValidTaskNumber(taskList, taskDescription)) {
             Task tempTask = taskList.get(Integer.parseInt(taskDescription) - 1);
 
             tempTask.markAsDone();
@@ -252,6 +270,27 @@ public class Duke {
             System.out.println(" Nice! I've marked this task as done: ");
             System.out.println("   " + tempTask);
             System.out.println(HORIZONTAL_LINE);
+        }
+    }
+
+    /**
+     * Delete specified task
+     *
+     * @param taskList ArrayList containing tasks.
+     */
+    private static void processDeleteCommand(ArrayList<Task> taskList, String taskDescription) throws DukeException {
+        if (checkValidTaskNumber(taskList, taskDescription)) {
+            Task tempTask = taskList.get(Integer.parseInt(taskDescription) - 1);
+            int taskNumber = Integer.parseInt(taskDescription) - 1;
+            int remainingTasks = taskList.size() - 1;
+
+            System.out.println(HORIZONTAL_LINE);
+            System.out.println(" Noted. I've removed this task: ");
+            System.out.println("   " + tempTask);
+            System.out.println(" Now you have " + remainingTasks + " tasks in the list.");
+            System.out.println(HORIZONTAL_LINE);
+
+            taskList.remove(taskNumber);
         }
     }
 
