@@ -244,7 +244,7 @@ public class Duke {
 
     private static void updateLocalList(ArrayList<Task> taskList) {
         try {
-            File data = new File("data/tasks.txt");
+            File data = new File(LOCAL_TASK_LIST);
             FileWriter fw = new FileWriter(data);
 
             StringBuilder toWrite = new StringBuilder("");
