@@ -10,6 +10,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -49,6 +53,7 @@ public class Duke {
     public static final String EXCEPTION_EMPTY_DESCRIPTION = "The description of a task cannot be empty.";
     public static final String EXCEPTION_EMPTY_DATETIME = "Did you forget to include the datetime?";
     public static final String LOCAL_TASK_LIST = "data/tasks.txt";
+    public static final String LOCAL_TASK_FOLDER = "data";
 
     public static void main(String[] args) {
         printWelcome();
@@ -76,7 +81,13 @@ public class Duke {
 
         Scanner userInput = new Scanner(System.in);
 
-        taskList = readLocalList();
+        try {
+            taskList = readLocalList();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("File IO exception, we had difficulty managing your local task file.");
+        }
+
 
         while (isProcessingCommand) {
             try {
@@ -247,9 +258,9 @@ public class Duke {
             File data = new File(LOCAL_TASK_LIST);
             FileWriter fw = new FileWriter(data);
 
-            StringBuilder toWrite = new StringBuilder("");
+            StringBuilder toWrite = new StringBuilder();
             for (Task task : taskList) {
-                toWrite.append(task.toString() + " \n");
+                toWrite.append(task.toString()).append(System.lineSeparator());
             }
 
             fw.write(toWrite.toString());
@@ -259,8 +270,15 @@ public class Duke {
         }
     }
 
-    public static ArrayList<Task> readLocalList() {
+    public static ArrayList<Task> readLocalList() throws IOException {
         ArrayList<Task> savedTasks = new ArrayList<>();
+
+        try {
+            Files.createDirectories(Paths.get(LOCAL_TASK_FOLDER));
+            Files.createFile(Path.of(LOCAL_TASK_LIST));
+        } catch (FileAlreadyExistsException ignored) {
+            // All is good
+        }
 
         File f = new File(LOCAL_TASK_LIST); // create a File for the given file path
 
@@ -271,7 +289,7 @@ public class Duke {
 
                 char taskType = line.charAt(1);
                 char taskStatus = line.charAt(4);
-                String taskString = line.substring(6);
+                String taskString = line.substring(7);
 
                 if (taskType == 'T') {
                     Task newTask = new Todo(taskString);
@@ -279,7 +297,7 @@ public class Duke {
                 } else if (taskType == 'E') {
                     String[] eventSplit = taskString.split(REGEX_EVENT_BRACKET_AT, 2);
                     String at = processSplitString(eventSplit);
-                    at = at.substring(0, at.length() - 2);
+                    at = at.substring(0, at.length() - 1);
                     checkTaskDatetime(at);
 
                     Event newTask = new Event(eventSplit[0], at);
@@ -287,7 +305,7 @@ public class Duke {
                 } else if (taskType == 'D') {
                     String[] deadlineSplit = taskString.split(REGEX_DEADLINE_BRACKET_BY, 2);
                     String by = processSplitString(deadlineSplit);
-                    by = by.substring(0, by.length() - 2);
+                    by = by.substring(0, by.length() - 1);
                     checkTaskDatetime(by);
 
                     Deadline newTask = new Deadline(deadlineSplit[0], by);
