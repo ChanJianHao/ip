@@ -6,6 +6,14 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -37,12 +45,16 @@ public class Duke {
 
     private static final String REGEX_SINGLE_SPACE = " ";
     private static final String REGEX_EVENT_SLASH_AT = "/at";
+    private static final String REGEX_EVENT_BRACKET_AT = "\\(at:";
     private static final String REGEX_DEADLINE_SLASH_BY = "/by";
+    private static final String REGEX_DEADLINE_BRACKET_BY = "\\(by:";
 
     public static final String EXCEPTION_INVALID_TASK_NUMBER = "That's an invalid task number!";
     public static final String EXCEPTION_INVALID_COMMAND = "I'm sorry, but I don't know what that means.";
     public static final String EXCEPTION_EMPTY_DESCRIPTION = "The description of a task cannot be empty.";
     public static final String EXCEPTION_EMPTY_DATETIME = "Did you forget to include the datetime?";
+    public static final String LOCAL_TASK_LIST = "data/tasks.txt";
+    public static final String LOCAL_TASK_FOLDER = "data";
 
     public static void main(String[] args) {
         printWelcome();
@@ -67,7 +79,16 @@ public class Duke {
     private static void runMainMenu() {
         boolean isProcessingCommand = true;
         ArrayList<Task> taskList = new ArrayList<>();
+
         Scanner userInput = new Scanner(System.in);
+
+        try {
+            taskList = readLocalList();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("File IO exception, we had difficulty managing your local task file.");
+        }
+
 
         while (isProcessingCommand) {
             try {
@@ -78,6 +99,7 @@ public class Duke {
 
         }
     }
+
 
     /**
      * Processes user input from main menu.
@@ -226,12 +248,88 @@ public class Duke {
      */
     private static void addTask(ArrayList<Task> taskList, Task newTask) {
         taskList.add(newTask);
+        updateLocalList(taskList);
 
         System.out.println(HORIZONTAL_LINE);
         System.out.println(" Got it. I've added this task:");
         System.out.println("   " + newTask);
         System.out.println(" Now you have " + taskList.size() + " tasks in the list.");
         System.out.println(HORIZONTAL_LINE);
+    }
+
+    private static void updateLocalList(ArrayList<Task> taskList) {
+        try {
+            File data = new File(LOCAL_TASK_LIST);
+            FileWriter fw = new FileWriter(data);
+
+            StringBuilder toWrite = new StringBuilder();
+            for (Task task : taskList) {
+                toWrite.append(task.toString()).append(System.lineSeparator());
+            }
+
+            fw.write(toWrite.toString());
+            fw.close();
+        } catch (IOException ioExp) {
+            System.err.println(ioExp);
+        }
+    }
+
+    public static ArrayList<Task> readLocalList() throws IOException {
+        ArrayList<Task> savedTasks = new ArrayList<>();
+
+        try {
+            Files.createDirectories(Paths.get(LOCAL_TASK_FOLDER));
+            Files.createFile(Path.of(LOCAL_TASK_LIST));
+        } catch (FileAlreadyExistsException ignored) {
+            // All is good
+        }
+
+        File f = new File(LOCAL_TASK_LIST); // create a File for the given file path
+
+        try {
+            Scanner inputFile = new Scanner(f); // create a Scanner using the File as the source
+            while (inputFile.hasNext()) {
+                String line = inputFile.nextLine();
+
+                char taskType = line.charAt(1);
+                char taskStatus = line.charAt(4);
+                String taskString = line.substring(7);
+
+                if (taskType == 'T') {
+                    Task newTask = new Todo(taskString);
+                    addExistingTask(savedTasks, newTask, taskStatus);
+                } else if (taskType == 'E') {
+                    String[] eventSplit = taskString.split(REGEX_EVENT_BRACKET_AT, 2);
+                    String at = processSplitString(eventSplit);
+                    at = at.substring(0, at.length() - 1);
+                    checkTaskDatetime(at);
+
+                    Event newTask = new Event(eventSplit[0], at);
+                    addExistingTask(savedTasks, newTask, taskStatus);
+                } else if (taskType == 'D') {
+                    String[] deadlineSplit = taskString.split(REGEX_DEADLINE_BRACKET_BY, 2);
+                    String by = processSplitString(deadlineSplit);
+                    by = by.substring(0, by.length() - 1);
+                    checkTaskDatetime(by);
+
+                    Deadline newTask = new Deadline(deadlineSplit[0], by);
+                    addExistingTask(savedTasks, newTask, taskStatus);
+                } else {
+                    throw new DukeException("Invalid saved task data found!");
+                }
+            }
+        } catch (FileNotFoundException | DukeException e) {
+            e.printStackTrace();
+        }
+
+        return savedTasks;
+    }
+
+    private static void addExistingTask(ArrayList<Task> taskList, Task newTask, char taskStatus) {
+        if (taskStatus == 'T') {
+            newTask.markAsDone();
+        }
+        taskList.add(newTask);
     }
 
     /**
