@@ -389,6 +389,7 @@ public class Duke {
             System.out.println(HORIZONTAL_LINE);
 
             taskList.remove(taskNumber);
+            updateLocalList(taskList);
         }
     }
 
