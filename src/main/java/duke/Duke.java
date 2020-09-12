@@ -139,6 +139,7 @@ public class Duke {
             processEventCommand(taskList, taskDescription);
             break;
         default:
+            System.out.println("Input: " + input);
             throw new DukeException(EXCEPTION_INVALID_COMMAND);
         }
         return true;
@@ -166,10 +167,12 @@ public class Duke {
      * @param taskList ArrayList containing tasks.
      */
     private static void processListCommand(ArrayList<Task> taskList) {
+        System.out.println(HORIZONTAL_LINE);
         for (int i = 0; i < taskList.size(); i++) {
             Task tempTask = taskList.get(i);
             System.out.println(" " + (i + 1) + "." + tempTask);
         }
+        System.out.println(HORIZONTAL_LINE);
     }
 
     /**
@@ -254,7 +257,7 @@ public class Duke {
         System.out.println(" Got it. I've added this task:");
         System.out.println("   " + newTask);
         System.out.println(" Now you have " + taskList.size() + " tasks in the list.");
-        System.out.println(HORIZONTAL_LINE);
+        System.out.println(HORIZONTAL_LINE + System.lineSeparator());
     }
 
     private static void updateLocalList(ArrayList<Task> taskList) {
@@ -367,7 +370,8 @@ public class Duke {
             System.out.println(HORIZONTAL_LINE);
             System.out.println(" Nice! I've marked this task as done: ");
             System.out.println("   " + tempTask);
-            System.out.println(HORIZONTAL_LINE);
+            System.out.println(HORIZONTAL_LINE + System.lineSeparator());
+            updateLocalList(taskList);
         }
     }
 
@@ -386,7 +390,7 @@ public class Duke {
             System.out.println(" Noted. I've removed this task: ");
             System.out.println("   " + tempTask);
             System.out.println(" Now you have " + remainingTasks + " tasks in the list.");
-            System.out.println(HORIZONTAL_LINE);
+            System.out.println(HORIZONTAL_LINE + System.lineSeparator());
 
             taskList.remove(taskNumber);
             updateLocalList(taskList);
