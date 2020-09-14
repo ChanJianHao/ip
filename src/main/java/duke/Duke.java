@@ -94,7 +94,7 @@ public class Duke {
             try {
                 isProcessingCommand = processCommand(taskList, userInput);
             } catch (DukeException exceptionMessage) {
-                System.out.println(exceptionMessage);
+                exceptionMessage.printStackTrace();
             }
 
         }
@@ -176,7 +176,7 @@ public class Duke {
     }
 
     /**
-     * Adds todo task.
+     * Adds a todo task.
      *
      * @param taskList        ArrayList containing tasks.
      * @param taskDescription duke.task.Task description for the newly added task.
@@ -273,11 +273,11 @@ public class Duke {
             fw.write(toWrite.toString());
             fw.close();
         } catch (IOException ioExp) {
-            System.err.println(ioExp);
+            ioExp.printStackTrace();
         }
     }
 
-    public static ArrayList<Task> readLocalList() throws IOException {
+    private static ArrayList<Task> readLocalList() throws IOException {
         ArrayList<Task> savedTasks = new ArrayList<>();
 
         try {
