@@ -1,0 +1,3 @@
+[T][F] hello world
+[E][T] apple (at: tonight)
+[D][T] homew (by: 233)
