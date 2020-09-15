@@ -1,11 +1,9 @@
-package duke;
-
-import duke.task.Task;
+package duke.task;
 
 import java.util.ArrayList;
 
 public class TaskList {
-    private ArrayList<Task> list;
+    private final ArrayList<Task> list;
 
     public TaskList() {
         list = new ArrayList<>();
@@ -15,12 +13,8 @@ public class TaskList {
         this.list = list;
     }
 
-    public ArrayList<Task> getTaskList() {
+    public ArrayList<Task> getList() {
         return this.list;
-    }
-
-    public void updateTaskList(ArrayList<Task> list) {
-        this.list = list;
     }
 
     public void addTask(Task task) {
@@ -31,7 +25,7 @@ public class TaskList {
         list.remove(taskNum);
     }
 
-    public int getTotalTasks() {
+    public int getTotal() {
         return list.size();
     }
 }

@@ -1,24 +1,14 @@
 package duke;
 
 import duke.exception.DukeException;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.Todo;
+import duke.storage.Storage;
+import duke.task.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    private static final String HORIZONTAL_LINE =
+    public static final String HORIZONTAL_LINE =
             "____________________________________________________________";
     private static final String CAT_LOGO =
             "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░" + System.lineSeparator()
@@ -45,9 +35,7 @@ public class Duke {
 
     private static final String REGEX_SINGLE_SPACE = " ";
     private static final String REGEX_EVENT_SLASH_AT = "/at";
-    private static final String REGEX_EVENT_BRACKET_AT = "\\(at:";
     private static final String REGEX_DEADLINE_SLASH_BY = "/by";
-    private static final String REGEX_DEADLINE_BRACKET_BY = "\\(by:";
 
     public static final String EXCEPTION_INVALID_TASK_NUMBER = "That's an invalid task number!";
     public static final String EXCEPTION_INVALID_COMMAND = "I'm sorry, but I don't know what that means.";
@@ -55,9 +43,26 @@ public class Duke {
     public static final String LOCAL_TASK_LIST = "data/tasks.txt";
     public static final String LOCAL_TASK_FOLDER = "data";
 
-    public static void main(String[] args) {
+    private TaskList tasks;
+    private final Storage storage;
+
+    public Duke(String filePath) {
+        storage = new Storage(filePath, LOCAL_TASK_FOLDER);
+        try {
+            tasks = new TaskList(storage.readLocalList());
+        } catch (IOException e) {
+            tasks = new TaskList();
+            System.out.println("File IO exception, we had difficulty managing your local task file.");
+        }
+    }
+
+    public void run() {
         printWelcome();
         runMainMenu();
+    }
+
+    public static void main(String[] args) {
+        new Duke(LOCAL_TASK_LIST).run();
     }
 
     /**
@@ -75,33 +80,24 @@ public class Duke {
     /**
      * Runs main menu for the program. Does a while loop until user inputs bye.
      */
-    private static void runMainMenu() {
+    private void runMainMenu() {
         boolean isProcessingCommand = true;
-        ArrayList<Task> taskList = new ArrayList<>();
 
         Scanner userInput = new Scanner(System.in);
 
-        try {
-            taskList = readLocalList();
-            if (taskList.size() > 0) {
-                System.out.println("Successfully loaded " + taskList.size() + " tasks from previous session.");
-            } else {
-                System.out.println("Looks like you're new here, starting with a fresh task list!");
-            }
-            System.out.println(HORIZONTAL_LINE);
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("File IO exception, we had difficulty managing your local task file.");
+        if (tasks.getList().size() > 0) {
+            System.out.println("Successfully loaded " + tasks.getList().size() + " tasks from previous session.");
+        } else {
+            System.out.println("Looks like you're new here, starting with a fresh task list!");
         }
-
+        System.out.println(HORIZONTAL_LINE);
 
         while (isProcessingCommand) {
             try {
-                isProcessingCommand = processCommand(taskList, userInput);
+                isProcessingCommand = processCommand(userInput);
             } catch (DukeException exceptionMessage) {
                 exceptionMessage.printStackTrace();
             }
-
         }
     }
 
@@ -109,11 +105,10 @@ public class Duke {
     /**
      * Processes user input from main menu.
      *
-     * @param taskList  ArrayList of all the tasks.
      * @param userInput User input string.
      * @return Returns true unless user enters bye, which would terminate main menu.
      */
-    private static boolean processCommand(ArrayList<Task> taskList, Scanner userInput) throws DukeException {
+    private boolean processCommand(Scanner userInput) throws DukeException {
         String input = userInput.nextLine();
 
         // Split string into 2's using space
@@ -126,22 +121,22 @@ public class Duke {
             printGoodbye();
             return false;
         case COMMAND_LIST:
-            processListCommand(taskList);
+            processListCommand();
             break;
         case COMMAND_DONE:
-            processDoneCommand(taskList, taskDescription);
+            processDoneCommand(taskDescription);
             break;
         case COMMAND_DELETE:
-            processDeleteCommand(taskList, taskDescription);
+            processDeleteCommand(taskDescription);
             break;
         case COMMAND_TODO:
-            processTodoCommand(taskList, taskDescription);
+            processTodoCommand(taskDescription);
             break;
         case COMMAND_DEADLINE:
-            processDeadlineCommand(taskList, taskDescription);
+            processDeadlineCommand(taskDescription);
             break;
         case COMMAND_EVENT:
-            processEventCommand(taskList, taskDescription);
+            processEventCommand(taskDescription);
             break;
         default:
             System.out.println("Input: " + input);
@@ -156,7 +151,7 @@ public class Duke {
      * @param splitInput Array containing split string.
      * @return Returns task description from the split string.
      */
-    private static String processSplitString(String[] splitInput) {
+    public String processSplitString(String[] splitInput) {
         String taskDescription;
         if (splitInput.length > 1) {
             taskDescription = splitInput[1];
@@ -168,13 +163,11 @@ public class Duke {
 
     /**
      * Lists all tasks.
-     *
-     * @param taskList ArrayList containing tasks.
      */
-    private static void processListCommand(ArrayList<Task> taskList) {
+    private void processListCommand() {
         System.out.println(HORIZONTAL_LINE);
-        for (int i = 0; i < taskList.size(); i++) {
-            Task tempTask = taskList.get(i);
+        for (int i = 0; i < tasks.getList().size(); i++) {
+            Task tempTask = tasks.getList().get(i);
             System.out.println(" " + (i + 1) + "." + tempTask);
         }
         System.out.println(HORIZONTAL_LINE);
@@ -183,45 +176,42 @@ public class Duke {
     /**
      * Adds a todo task.
      *
-     * @param taskList        ArrayList containing tasks.
      * @param taskDescription duke.task.Task description for the newly added task.
      */
-    private static void processTodoCommand(ArrayList<Task> taskList, String taskDescription) throws DukeException {
+    private void processTodoCommand(String taskDescription) throws DukeException {
         checkTaskDescription(taskDescription);
         Todo newTask = new Todo(taskDescription);
-        addTask(taskList, newTask);
+        addTask(newTask);
     }
 
     /**
      * Adds event task.
      *
-     * @param taskList        ArrayList containing tasks.
      * @param taskDescription duke.task.Task description for the newly added task.
      */
-    private static void processEventCommand(ArrayList<Task> taskList, String taskDescription) throws DukeException {
+    private void processEventCommand(String taskDescription) throws DukeException {
         checkTaskDescription(taskDescription);
         String[] eventSplit = taskDescription.split(REGEX_EVENT_SLASH_AT, 2);
         String at = processSplitString(eventSplit);
         checkTaskDatetime(at);
 
         Event newTask = new Event(eventSplit[0], at);
-        addTask(taskList, newTask);
+        addTask(newTask);
     }
 
     /**
      * Adds deadline task.
      *
-     * @param taskList        ArrayList containing tasks.
      * @param taskDescription duke.task.Task description for the newly added task.
      */
-    private static void processDeadlineCommand(ArrayList<Task> taskList, String taskDescription) throws DukeException {
+    private void processDeadlineCommand(String taskDescription) throws DukeException {
         checkTaskDescription(taskDescription);
         String[] deadlineSplit = taskDescription.split(REGEX_DEADLINE_SLASH_BY, 2);
         String by = processSplitString(deadlineSplit);
         checkTaskDatetime(by);
 
         Deadline newTask = new Deadline(deadlineSplit[0], by);
-        addTask(taskList, newTask);
+        addTask(newTask);
     }
 
     /**
@@ -230,7 +220,7 @@ public class Duke {
      * @param taskDescription duke.task.Task description.
      * @throws DukeException duke.exception.DukeException when the string taskDescription is empty.
      */
-    private static void checkTaskDescription(String taskDescription) throws DukeException {
+    private void checkTaskDescription(String taskDescription) throws DukeException {
         if (taskDescription.isEmpty()) {
             throw new DukeException(EXCEPTION_INVALID_COMMAND);
         }
@@ -242,7 +232,7 @@ public class Duke {
      * @param dateTime duke.task.Task datetime.
      * @throws DukeException duke.exception.DukeException when the string datetime is empty.
      */
-    private static void checkTaskDatetime(String dateTime) throws DukeException {
+    private void checkTaskDatetime(String dateTime) throws DukeException {
         if (dateTime.isEmpty()) {
             throw new DukeException(EXCEPTION_EMPTY_DATETIME);
         }
@@ -251,108 +241,32 @@ public class Duke {
     /**
      * Executes adding task to provided task list and prints success message.
      *
-     * @param taskList ArrayList containing tasks.
-     * @param newTask  New task to be added.
+     * @param newTask New task to be added.
      */
-    private static void addTask(ArrayList<Task> taskList, Task newTask) {
-        taskList.add(newTask);
-        updateLocalList(taskList);
+    private void addTask(Task newTask) {
+        tasks.addTask(newTask);
+        storage.updateLocalList(tasks.getList());
 
         System.out.println(HORIZONTAL_LINE);
         System.out.println(" Got it. I've added this task:");
         System.out.println("   " + newTask);
-        System.out.println(" Now you have " + taskList.size() + " tasks in the list.");
+        System.out.println(" Now you have " + tasks.getTotal() + " tasks in the list.");
         System.out.println(HORIZONTAL_LINE + System.lineSeparator());
     }
 
-    private static void updateLocalList(ArrayList<Task> taskList) {
-        try {
-            File data = new File(LOCAL_TASK_LIST);
-            FileWriter fw = new FileWriter(data);
-
-            StringBuilder toWrite = new StringBuilder();
-            for (Task task : taskList) {
-                toWrite.append(task.toFileString()).append(System.lineSeparator());
-            }
-
-            fw.write(toWrite.toString());
-            fw.close();
-        } catch (IOException ioExp) {
-            ioExp.printStackTrace();
-        }
-    }
-
-    private static ArrayList<Task> readLocalList() throws IOException {
-        ArrayList<Task> savedTasks = new ArrayList<>();
-
-        try {
-            Files.createDirectories(Paths.get(LOCAL_TASK_FOLDER));
-            Files.createFile(Path.of(LOCAL_TASK_LIST));
-        } catch (FileAlreadyExistsException ignored) {
-            // All is good
-        }
-
-        File f = new File(LOCAL_TASK_LIST); // create a File for the given file path
-
-        try {
-            Scanner inputFile = new Scanner(f); // create a Scanner using the File as the source
-            while (inputFile.hasNext()) {
-                String line = inputFile.nextLine();
-
-                char taskType = line.charAt(1);
-                char taskStatus = line.charAt(4);
-                String taskString = line.substring(7);
-
-                if (taskType == 'T') {
-                    Task newTask = new Todo(taskString);
-                    addExistingTask(savedTasks, newTask, taskStatus);
-                } else if (taskType == 'E') {
-                    String[] eventSplit = taskString.split(REGEX_EVENT_BRACKET_AT, 2);
-                    String at = processSplitString(eventSplit);
-                    at = at.substring(0, at.length() - 1);
-                    checkTaskDatetime(at);
-
-                    Event newTask = new Event(eventSplit[0], at);
-                    addExistingTask(savedTasks, newTask, taskStatus);
-                } else if (taskType == 'D') {
-                    String[] deadlineSplit = taskString.split(REGEX_DEADLINE_BRACKET_BY, 2);
-                    String by = processSplitString(deadlineSplit);
-                    by = by.substring(0, by.length() - 1);
-                    checkTaskDatetime(by);
-
-                    Deadline newTask = new Deadline(deadlineSplit[0], by);
-                    addExistingTask(savedTasks, newTask, taskStatus);
-                } else {
-                    throw new DukeException("Invalid saved task data found!");
-                }
-            }
-        } catch (FileNotFoundException | DukeException e) {
-            e.printStackTrace();
-        }
-
-        return savedTasks;
-    }
-
-    private static void addExistingTask(ArrayList<Task> taskList, Task newTask, char taskStatus) {
-        if (taskStatus == 'T') {
-            newTask.markAsDone();
-        }
-        taskList.add(newTask);
-    }
 
     /**
      * Checks if user input task number is an existing task.
      *
-     * @param taskList        ArrayList containing tasks.
      * @param taskDescription duke.task.Task index to be marked as done.
      * @return True if task number is valid.
      * @throws DukeException Throws exception if invalid task number.
      */
-    private static boolean checkValidTaskNumber(ArrayList<Task> taskList, String taskDescription) throws DukeException {
+    private boolean checkValidTaskNumber(String taskDescription) throws DukeException {
         // Checks if invalid done number is provided
         if (taskDescription.equals("")) {
             throw new DukeException(EXCEPTION_INVALID_TASK_NUMBER);
-        } else if (Integer.parseInt(taskDescription) > taskList.size()
+        } else if (Integer.parseInt(taskDescription) > tasks.getTotal()
                 || Integer.parseInt(taskDescription) <= 0) {
             throw new DukeException(EXCEPTION_INVALID_TASK_NUMBER);
         }
@@ -363,12 +277,11 @@ public class Duke {
     /**
      * Marks an existing task as done.
      *
-     * @param taskList        ArrayList containing tasks.
      * @param taskDescription duke.task.Task index to be marked as done.
      */
-    private static void processDoneCommand(ArrayList<Task> taskList, String taskDescription) throws DukeException {
-        if (checkValidTaskNumber(taskList, taskDescription)) {
-            Task tempTask = taskList.get(Integer.parseInt(taskDescription) - 1);
+    private void processDoneCommand(String taskDescription) throws DukeException {
+        if (checkValidTaskNumber(taskDescription)) {
+            Task tempTask = tasks.getList().get(Integer.parseInt(taskDescription) - 1);
 
             tempTask.markAsDone();
 
@@ -376,20 +289,18 @@ public class Duke {
             System.out.println(" Nice! I've marked this task as done: ");
             System.out.println("   " + tempTask);
             System.out.println(HORIZONTAL_LINE + System.lineSeparator());
-            updateLocalList(taskList);
+            storage.updateLocalList(tasks.getList());
         }
     }
 
     /**
      * Delete specified task
-     *
-     * @param taskList ArrayList containing tasks.
      */
-    private static void processDeleteCommand(ArrayList<Task> taskList, String taskDescription) throws DukeException {
-        if (checkValidTaskNumber(taskList, taskDescription)) {
-            Task tempTask = taskList.get(Integer.parseInt(taskDescription) - 1);
+    private void processDeleteCommand(String taskDescription) throws DukeException {
+        if (checkValidTaskNumber(taskDescription)) {
+            Task tempTask = tasks.getList().get(Integer.parseInt(taskDescription) - 1);
             int taskNumber = Integer.parseInt(taskDescription) - 1;
-            int remainingTasks = taskList.size() - 1;
+            int remainingTasks = tasks.getTotal() - 1;
 
             System.out.println(HORIZONTAL_LINE);
             System.out.println(" Noted. I've removed this task: ");
@@ -397,15 +308,15 @@ public class Duke {
             System.out.println(" Now you have " + remainingTasks + " tasks in the list.");
             System.out.println(HORIZONTAL_LINE + System.lineSeparator());
 
-            taskList.remove(taskNumber);
-            updateLocalList(taskList);
+            tasks.removeTask(taskNumber);
+            storage.updateLocalList(tasks.getList());
         }
     }
 
     /**
      * Prints the good bye message when bye is received.
      */
-    private static void printGoodbye() {
+    private void printGoodbye() {
         System.out.println(HORIZONTAL_LINE);
         System.out.println(" Bye. Hope to see you again soon!");
         System.out.println(HORIZONTAL_LINE);

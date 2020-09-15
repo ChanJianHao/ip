@@ -1,4 +1,4 @@
-package duke;
+package duke.storage;
 
 import duke.exception.DukeException;
 import duke.task.Deadline;
@@ -17,15 +17,13 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static duke.Duke.*;
-
 public class Storage {
 
     private static final String REGEX_DEADLINE_BRACKET_BY = "\\(by:";
     private static final String REGEX_EVENT_BRACKET_AT = "\\(at:";
 
-    private String localTaskList;
-    private String localTaskFolder;
+    private final String localTaskList;
+    private final String localTaskFolder;
 
     public Storage(String localTaskList, String localTaskFolder) {
         this.localTaskList = localTaskList;
@@ -47,6 +45,16 @@ public class Storage {
         } catch (IOException ioExp) {
             ioExp.printStackTrace();
         }
+    }
+
+    public String processSplitString(String[] splitInput) {
+        String taskDescription;
+        if (splitInput.length > 1) {
+            taskDescription = splitInput[1];
+        } else {
+            taskDescription = "";
+        }
+        return taskDescription;
     }
 
     public ArrayList<Task> readLocalList() throws IOException {
@@ -77,7 +85,6 @@ public class Storage {
                     String[] eventSplit = taskString.split(REGEX_EVENT_BRACKET_AT, 2);
                     String at = processSplitString(eventSplit);
                     at = at.substring(0, at.length() - 1);
-                    checkTaskDatetime(at);
 
                     Event newTask = new Event(eventSplit[0], at);
                     addExistingTask(savedTasks, newTask, taskStatus);
@@ -85,7 +92,6 @@ public class Storage {
                     String[] deadlineSplit = taskString.split(REGEX_DEADLINE_BRACKET_BY, 2);
                     String by = processSplitString(deadlineSplit);
                     by = by.substring(0, by.length() - 1);
-                    checkTaskDatetime(by);
 
                     Deadline newTask = new Deadline(deadlineSplit[0], by);
                     addExistingTask(savedTasks, newTask, taskStatus);
