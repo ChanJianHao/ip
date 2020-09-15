@@ -11,7 +11,7 @@ public class Task {
 
     public String getStatusIcon() {
         // returns tick or X symbols
-        return (isDone ? "✓" : "✘");
+        return (isDone ? "✓" : "✗");
     }
 
     public boolean getStatus() {
@@ -24,6 +24,16 @@ public class Task {
 
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
+    }
+
+    public String toFileString() {
+        char doneFlag = 'F';
+
+        if (getStatus()) {
+            doneFlag = 'T';
+        }
+
+        return "[" + doneFlag + "] " + description;
     }
 
     public void markAsDone() {

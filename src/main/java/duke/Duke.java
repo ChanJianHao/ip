@@ -51,7 +51,6 @@ public class Duke {
 
     public static final String EXCEPTION_INVALID_TASK_NUMBER = "That's an invalid task number!";
     public static final String EXCEPTION_INVALID_COMMAND = "I'm sorry, but I don't know what that means.";
-    public static final String EXCEPTION_EMPTY_DESCRIPTION = "The description of a task cannot be empty.";
     public static final String EXCEPTION_EMPTY_DATETIME = "Did you forget to include the datetime?";
     public static final String LOCAL_TASK_LIST = "data/tasks.txt";
     public static final String LOCAL_TASK_FOLDER = "data";
@@ -84,6 +83,12 @@ public class Duke {
 
         try {
             taskList = readLocalList();
+            if (taskList.size() > 0) {
+                System.out.println("Successfully loaded " + taskList.size() + " tasks from previous session.");
+            } else {
+                System.out.println("Looks like you're new here, starting with a fresh task list!");
+            }
+            System.out.println(HORIZONTAL_LINE);
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("File IO exception, we had difficulty managing your local task file.");
@@ -227,7 +232,7 @@ public class Duke {
      */
     private static void checkTaskDescription(String taskDescription) throws DukeException {
         if (taskDescription.isEmpty()) {
-            throw new DukeException(EXCEPTION_EMPTY_DESCRIPTION);
+            throw new DukeException(EXCEPTION_INVALID_COMMAND);
         }
     }
 
@@ -267,7 +272,7 @@ public class Duke {
 
             StringBuilder toWrite = new StringBuilder();
             for (Task task : taskList) {
-                toWrite.append(task.toString()).append(System.lineSeparator());
+                toWrite.append(task.toFileString()).append(System.lineSeparator());
             }
 
             fw.write(toWrite.toString());
