@@ -1,5 +1,7 @@
 package duke;
 
+import duke.command.Command;
+import duke.exception.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;
@@ -12,25 +14,41 @@ public class Duke {
     public static final String LOCAL_TASK_LIST = "data/tasks.txt";
     public static final String LOCAL_TASK_FOLDER = "data";
 
+    private final Storage storage;
     private final Parser parser;
     private final Ui ui;
+    private TaskList tasks;
 
-    public Duke() {
+    private Duke() {
         ui = new Ui();
-        Storage storage = new Storage(LOCAL_TASK_LIST, LOCAL_TASK_FOLDER);
-        TaskList tasks;
+        parser = new Parser();
+        storage = new Storage(LOCAL_TASK_LIST, LOCAL_TASK_FOLDER);
         try {
             tasks = new TaskList(storage.readLocalList());
         } catch (IOException e) {
             tasks = new TaskList();
             System.out.println("File IO exception, we had difficulty managing your local task file.");
         }
-        parser = new Parser(tasks, ui, storage);
     }
 
-    public void run() {
+    private void run() {
         ui.printWelcome();
-        parser.runMainMenu();
+        ui.checkLocalList(tasks);
+
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String userInput = ui.readCommand();
+                ui.showLine();
+                Command currentCommand = parser.processCommand(userInput);
+                currentCommand.execute(tasks, ui, storage);
+                isExit = currentCommand.isExit();
+            } catch (DukeException e) {
+                e.printStackTrace();
+            } finally {
+                ui.showLine();
+            }
+        }
     }
 
     public static void main(String[] args) {

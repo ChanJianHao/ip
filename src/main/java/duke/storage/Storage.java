@@ -100,8 +100,6 @@ public class Storage {
                 }
             }
 
-
-
         } catch (FileNotFoundException | DukeException e) {
             e.printStackTrace();
         }
