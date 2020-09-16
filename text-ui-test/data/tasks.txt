@@ -1,2 +1,4 @@
 [E][T] CLASS for CS2113T (at: 11 Sept 20)
 [T][T] nothing
+[D][T] Play Dota2 (by: Tonight)
+[E][F] Apple iOS 14 (at: 15 Sept 2020)

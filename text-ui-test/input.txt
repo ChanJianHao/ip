@@ -25,4 +25,9 @@ delete 2
 list
 done 2
 list
+deadline Play Dota2 /by Tonight
+event Apple iOS 14 /at 15 Sept 2020
+list
+done 3
+list
 bye

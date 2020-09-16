@@ -50,9 +50,7 @@ public class Ui {
      * Prints the good bye message when bye is received.
      */
     public void printGoodbye() {
-        showLine();
         System.out.println(" Bye. Hope to see you again soon!");
-        showLine();
     }
 
     public void checkLocalList(TaskList tasks) {

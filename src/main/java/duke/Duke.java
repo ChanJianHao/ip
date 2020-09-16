@@ -39,7 +39,6 @@ public class Duke {
         while (!isExit) {
             try {
                 String userInput = ui.readCommand();
-                ui.showLine();
                 Command currentCommand = parser.processCommand(userInput);
                 currentCommand.execute(tasks, ui, storage);
                 isExit = currentCommand.isExit();
