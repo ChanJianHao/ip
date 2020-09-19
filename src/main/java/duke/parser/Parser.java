@@ -6,7 +6,9 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
 
-
+/**
+ * Parses commands entered by the user from standard input.
+ */
 public class Parser {
     private static final String COMMAND_BYE = "bye";
     private static final String COMMAND_LIST = "list";

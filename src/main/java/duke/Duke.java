@@ -9,6 +9,9 @@ import duke.ui.Ui;
 
 import java.io.IOException;
 
+/**
+ * Main class for Duke.
+ */
 public class Duke {
 
     public static final String LOCAL_TASK_LIST = "data/tasks.txt";
@@ -19,6 +22,9 @@ public class Duke {
     private final Ui ui;
     private TaskList tasks;
 
+    /**
+     * Makes a new Duke task tacker.
+     */
     private Duke() {
         ui = new Ui();
         parser = new Parser();
@@ -31,6 +37,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs Duke program.
+     */
     private void run() {
         ui.printWelcome();
         ui.checkLocalList(tasks);
