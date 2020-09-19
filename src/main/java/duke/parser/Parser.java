@@ -6,6 +6,11 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class Parser {
     private static final String COMMAND_BYE = "bye";
@@ -22,7 +27,8 @@ public class Parser {
 
     public static final String EXCEPTION_INVALID_TASK_NUMBER = "That's an invalid task number!";
     public static final String EXCEPTION_INVALID_COMMAND = "I'm sorry, but I don't know what that means.";
-    public static final String EXCEPTION_EMPTY_DATETIME = "Did you forget to include the datetime?";
+    public static final String EXCEPTION_INVALID_DATETIME = "Did you include a valid datetime? yyyy/MM/dd hh:mm:ss";
+    public static final DateFormat TASK_DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 
 
     /**
@@ -34,6 +40,7 @@ public class Parser {
         // Split string into 2's using space
         String[] splitInput = input.split(REGEX_SINGLE_SPACE, 2);
         String taskDescription = processSplitString(splitInput);
+        Date taskDate;
 
         // Main menu navigation
         switch (splitInput[0]) {
@@ -52,16 +59,16 @@ public class Parser {
             checkTaskDescription(taskDescription);
             String[] deadlineSplit = taskDescription.split(REGEX_DEADLINE_SLASH_BY, 2);
             String by = processSplitString(deadlineSplit);
-            checkTaskDatetime(by);
+            taskDate = checkTaskDatetime(by);
 
-            return new AddCommand(new Deadline(deadlineSplit[0], by));
+            return new AddCommand(new Deadline(deadlineSplit[0], taskDate));
         case COMMAND_EVENT:
             checkTaskDescription(taskDescription);
             String[] eventSplit = taskDescription.split(REGEX_EVENT_SLASH_AT, 2);
             String at = processSplitString(eventSplit);
-            checkTaskDatetime(at);
+            taskDate = checkTaskDatetime(at);
 
-            return new AddCommand(new Event(eventSplit[0], at));
+            return new AddCommand(new Event(eventSplit[0], taskDate));
         default:
             throw new DukeException(EXCEPTION_INVALID_COMMAND);
         }
@@ -98,12 +105,22 @@ public class Parser {
     /**
      * Checks task description validity.
      *
-     * @param dateTime duke.task.Task datetime.
+     * @param dateString duke.task.Task datetime.
      * @throws DukeException duke.exception.DukeException when the string datetime is empty.
      */
-    private void checkTaskDatetime(String dateTime) throws DukeException {
-        if (dateTime.isEmpty()) {
-            throw new DukeException(EXCEPTION_EMPTY_DATETIME);
+    public Date checkTaskDatetime(String dateString) throws DukeException {
+        if (dateString.isEmpty()) {
+            throw new DukeException(EXCEPTION_INVALID_DATETIME);
+        }
+
+        Date taskDate;
+
+        try {
+            taskDate = TASK_DATE_FORMAT.parse(dateString);
+            return taskDate;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            throw new DukeException(EXCEPTION_INVALID_DATETIME);
         }
     }
 }
