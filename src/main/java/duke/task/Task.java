@@ -1,6 +1,8 @@
 package duke.task;
 
-public class Task {
+import java.util.Date;
+
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -17,6 +19,8 @@ public class Task {
     public boolean getStatus() {
         return isDone;
     }
+
+    public abstract Date getDatetime();
 
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;

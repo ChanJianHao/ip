@@ -7,11 +7,15 @@ import java.text.SimpleDateFormat;
 
 public class Deadline extends Task {
     protected Date dueDate;
-    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");;
+    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
     public Deadline(String description, Date dueDate) {
         super(description);
         this.dueDate = dueDate;
+    }
+
+    public Date getDatetime() {
+        return dueDate;
     }
 
     @Override

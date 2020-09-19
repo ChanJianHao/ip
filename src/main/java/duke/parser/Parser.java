@@ -20,6 +20,7 @@ public class Parser {
     private static final String COMMAND_DELETE = "delete";
     private static final String COMMAND_DEADLINE = "deadline";
     private static final String COMMAND_EVENT = "event";
+    private static final String COMMAND_SCHEDULE = "schedule";
 
     private static final String REGEX_SINGLE_SPACE = " ";
     private static final String REGEX_EVENT_SLASH_AT = "/at";
@@ -28,7 +29,8 @@ public class Parser {
     public static final String EXCEPTION_INVALID_TASK_NUMBER = "That's an invalid task number!";
     public static final String EXCEPTION_INVALID_COMMAND = "I'm sorry, but I don't know what that means.";
     public static final String EXCEPTION_INVALID_DATETIME = "Did you include a valid datetime? yyyy/MM/dd hh:mm:ss";
-    public static final DateFormat TASK_DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+    public static final DateFormat TASK_DATETIME_FORMAT = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+    public static final DateFormat TASK_DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd");
 
 
     /**
@@ -59,16 +61,20 @@ public class Parser {
             checkTaskDescription(taskDescription);
             String[] deadlineSplit = taskDescription.split(REGEX_DEADLINE_SLASH_BY, 2);
             String by = processSplitString(deadlineSplit);
-            taskDate = checkTaskDatetime(by);
+            taskDate = checkTaskDatetime(by, TASK_DATETIME_FORMAT);
 
             return new AddCommand(new Deadline(deadlineSplit[0], taskDate));
         case COMMAND_EVENT:
             checkTaskDescription(taskDescription);
             String[] eventSplit = taskDescription.split(REGEX_EVENT_SLASH_AT, 2);
             String at = processSplitString(eventSplit);
-            taskDate = checkTaskDatetime(at);
+            taskDate = checkTaskDatetime(at, TASK_DATETIME_FORMAT);
 
             return new AddCommand(new Event(eventSplit[0], taskDate));
+        case COMMAND_SCHEDULE:
+            taskDate = checkTaskDatetime(taskDescription, TASK_DATE_FORMAT);
+
+            return new ScheduleCommand(taskDate);
         default:
             throw new DukeException(EXCEPTION_INVALID_COMMAND);
         }
@@ -108,7 +114,7 @@ public class Parser {
      * @param dateString duke.task.Task datetime.
      * @throws DukeException duke.exception.DukeException when the string datetime is empty.
      */
-    public Date checkTaskDatetime(String dateString) throws DukeException {
+    public Date checkTaskDatetime(String dateString, DateFormat dateFormat) throws DukeException {
         if (dateString.isEmpty()) {
             throw new DukeException(EXCEPTION_INVALID_DATETIME);
         }
@@ -116,11 +122,13 @@ public class Parser {
         Date taskDate;
 
         try {
-            taskDate = TASK_DATE_FORMAT.parse(dateString);
+            taskDate = dateFormat.parse(dateString);
             return taskDate;
         } catch (ParseException e) {
             e.printStackTrace();
             throw new DukeException(EXCEPTION_INVALID_DATETIME);
         }
     }
+
+
 }
