@@ -1,6 +1,8 @@
 package duke.task;
 
-public class Task {
+import java.util.Date;
+
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -18,12 +20,14 @@ public class Task {
         return isDone;
     }
 
-    public String getDescription() {
-        return description;
-    }
+    public abstract Date getDatetime();
 
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public String toFileString() {

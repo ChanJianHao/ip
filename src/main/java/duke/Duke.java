@@ -31,7 +31,7 @@ public class Duke {
         storage = new Storage(LOCAL_TASK_LIST, LOCAL_TASK_FOLDER);
         try {
             tasks = new TaskList(storage.readLocalList());
-        } catch (IOException e) {
+        } catch (IOException | DukeException e) {
             tasks = new TaskList();
             System.out.println("File IO exception, we had difficulty managing your local task file.");
         }

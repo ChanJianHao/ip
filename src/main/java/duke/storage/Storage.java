@@ -14,13 +14,18 @@ import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Storage {
 
     private static final String REGEX_DEADLINE_BRACKET_BY = "\\(by:";
     private static final String REGEX_EVENT_BRACKET_AT = "\\(at:";
+    public static final String INVALID_SAVED_TASK_DATA = "Invalid saved task data found!";
 
     private final String localTaskList;
     private final String localTaskFolder;
@@ -57,7 +62,7 @@ public class Storage {
         return taskDescription;
     }
 
-    public ArrayList<Task> readLocalList() throws IOException {
+    public ArrayList<Task> readLocalList() throws IOException, DukeException {
         ArrayList<Task> savedTasks = new ArrayList<>();
 
         try {
@@ -78,6 +83,9 @@ public class Storage {
                 char taskStatus = line.charAt(4);
                 String taskString = line.substring(7);
 
+                Date taskDate;
+                DateFormat taskDateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+
                 if (taskType == 'T') {
                     Task newTask = new Todo(taskString);
                     addExistingTask(savedTasks, newTask, taskStatus);
@@ -86,22 +94,27 @@ public class Storage {
                     String at = processSplitString(eventSplit);
                     at = at.substring(0, at.length() - 1);
 
-                    Event newTask = new Event(eventSplit[0], at);
+                    taskDate = taskDateFormat.parse(at);
+
+                    Event newTask = new Event(eventSplit[0], taskDate);
                     addExistingTask(savedTasks, newTask, taskStatus);
                 } else if (taskType == 'D') {
                     String[] deadlineSplit = taskString.split(REGEX_DEADLINE_BRACKET_BY, 2);
                     String by = processSplitString(deadlineSplit);
                     by = by.substring(0, by.length() - 1);
 
-                    Deadline newTask = new Deadline(deadlineSplit[0], by);
+                    taskDate = taskDateFormat.parse(by);
+
+                    Deadline newTask = new Deadline(deadlineSplit[0], taskDate);
                     addExistingTask(savedTasks, newTask, taskStatus);
                 } else {
-                    throw new DukeException("Invalid saved task data found!");
+                    throw new DukeException(INVALID_SAVED_TASK_DATA);
                 }
             }
 
-        } catch (FileNotFoundException | DukeException e) {
+        } catch (FileNotFoundException | DukeException | ParseException e) {
             e.printStackTrace();
+            throw new DukeException(INVALID_SAVED_TASK_DATA);
         }
 
         return savedTasks;
