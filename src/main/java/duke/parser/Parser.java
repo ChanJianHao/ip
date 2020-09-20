@@ -20,6 +20,7 @@ public class Parser {
     private static final String COMMAND_DELETE = "delete";
     private static final String COMMAND_DEADLINE = "deadline";
     private static final String COMMAND_EVENT = "event";
+    private static final String COMMAND_FIND = "find";
     private static final String COMMAND_SCHEDULE = "schedule";
 
     private static final String REGEX_SINGLE_SPACE = " ";
@@ -48,6 +49,8 @@ public class Parser {
         switch (splitInput[0]) {
         case COMMAND_BYE:
             return new ExitCommand();
+        case COMMAND_FIND:
+            return new FindCommand(taskDescription);
         case COMMAND_LIST:
             return new ListCommand();
         case COMMAND_DONE:

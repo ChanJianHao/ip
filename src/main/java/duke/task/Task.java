@@ -26,6 +26,10 @@ public abstract class Task {
         return "[" + getStatusIcon() + "] " + description;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public String toFileString() {
         char doneFlag = 'F';
 
