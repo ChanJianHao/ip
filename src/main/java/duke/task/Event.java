@@ -4,6 +4,9 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+/**
+ * Represents a Event task.
+ */
 public class Event extends Task {
     protected Date eventDatetime;
     DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -13,6 +16,11 @@ public class Event extends Task {
         this.eventDatetime = eventDatetime;
     }
 
+    /**
+     * Gets the datetime of deadline.
+     *
+     * @return datetime of deadline.
+     */
     public Date getDatetime() {
         return eventDatetime;
     }

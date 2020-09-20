@@ -9,24 +9,39 @@ import duke.task.TaskList;
 import duke.ui.Ui;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static duke.parser.Parser.EXCEPTION_INVALID_DATETIME;
+import static duke.parser.Parser.TASK_DATE_FORMAT;
+
+/**
+ * Searches and returns tasks for the day.
+ */
 public class ScheduleCommand extends Command {
     private final Date checkDate;
-    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(
-            "dd/MM/yyyy");
-    public static final String EXCEPTION_INVALID_DATE = "Did you include a valid date? yyyy/MM/dd";
 
+    /**
+     * Constructor that validates date input.
+     *
+     * @param checkDate Date to search for.
+     * @throws DukeException If input is not valid date format.
+     */
     public ScheduleCommand(Date checkDate) throws DukeException {
         try {
-            this.checkDate = DATE_FORMAT.parse(DATE_FORMAT.format(checkDate));
+            this.checkDate = TASK_DATE_FORMAT.parse(TASK_DATE_FORMAT.format(checkDate));
         } catch (ParseException e) {
             e.printStackTrace();
-            throw new DukeException(EXCEPTION_INVALID_DATE);
+            throw new DukeException(EXCEPTION_INVALID_DATETIME);
         }
     }
 
+    /**
+     * Prints all the task on the specified date.
+     *
+     * @param tasks   TaskList storing the tasks.
+     * @param ui      User interaction management.
+     * @param storage Local storage of tasks.
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         System.out.println(" Your tasks for date " + checkDate + " are:");
 
@@ -36,9 +51,9 @@ public class ScheduleCommand extends Command {
 
             if (tempTask instanceof Event || tempTask instanceof Deadline) {
                 try {
-                    taskDate = DATE_FORMAT.parse(DATE_FORMAT.format(tempTask.getDatetime()));
+                    taskDate = TASK_DATE_FORMAT.parse(TASK_DATE_FORMAT.format(tempTask.getDatetime()));
                     if (taskDate.compareTo(checkDate) == 0) {
-                        System.out.println(" " + (i + 1) + "." + tempTask);
+                        ui.printMessage(" " + (i + 1) + "." + tempTask);
                     }
                 } catch (ParseException e) {
                     e.printStackTrace();

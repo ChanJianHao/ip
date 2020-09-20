@@ -12,7 +12,6 @@ import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -35,12 +34,12 @@ public class Parser {
     private static final String REGEX_SINGLE_SPACE = " ";
     private static final String REGEX_EVENT_SLASH_AT = "/at";
     private static final String REGEX_DEADLINE_SLASH_BY = "/by";
+    public static final DateFormat TASK_DATETIME_FORMAT = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+    public static final DateFormat TASK_DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd");
 
     public static final String EXCEPTION_INVALID_TASK_NUMBER = "That's an invalid task number!";
     public static final String EXCEPTION_INVALID_COMMAND = "I'm sorry, but I don't know what that means.";
     public static final String EXCEPTION_INVALID_DATETIME = "Did you include a valid datetime? yyyy/MM/dd hh:mm:ss";
-    public static final DateFormat TASK_DATETIME_FORMAT = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-    public static final DateFormat TASK_DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd");
 
 
     /**
@@ -52,6 +51,7 @@ public class Parser {
         // Split string into 2's using space
         String[] splitInput = input.split(REGEX_SINGLE_SPACE, 2);
         String taskDescription = processSplitString(splitInput);
+
         Date taskDate;
 
         // Main menu navigation
@@ -141,6 +141,5 @@ public class Parser {
             throw new DukeException(EXCEPTION_INVALID_DATETIME);
         }
     }
-
 
 }

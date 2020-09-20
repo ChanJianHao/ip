@@ -2,6 +2,9 @@ package duke.task;
 
 import java.util.Date;
 
+/**
+ * Abstract class for Task.
+ */
 public abstract class Task {
     protected String description;
     protected boolean isDone;

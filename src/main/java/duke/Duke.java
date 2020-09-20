@@ -10,10 +10,9 @@ import duke.ui.Ui;
 import java.io.IOException;
 
 /**
- * Main class for Duke.
+ * Main class for Neko-bot. Greets user and starts the task tracking utility.
  */
 public class Duke {
-
     public static final String LOCAL_TASK_LIST = "data/tasks.txt";
     public static final String LOCAL_TASK_FOLDER = "data";
 

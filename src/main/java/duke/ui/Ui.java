@@ -1,28 +1,33 @@
 package duke.ui;
 
+import duke.task.Task;
 import duke.task.TaskList;
 
 import java.io.InputStream;
 import java.util.Scanner;
 
+/**
+ * Class for User Interaction management of the application.
+ */
 public class Ui {
     public static final String HORIZONTAL_LINE =
             "____________________________________________________________";
+    private static final String LS = System.lineSeparator();
     private static final String CAT_LOGO =
-            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░" + System.lineSeparator()
-                    + "░░░░░░░░░░▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄░░░░░░░░░" + System.lineSeparator()
-                    + "░░░░░░░░▄▀░░░░░░░░░░░░▄░░░░░░░▀▄░░░░░░░" + System.lineSeparator()
-                    + "░░░░░░░░█░░▄░░░░▄░░░░░░░░░░░░░░█░░░░░░░" + System.lineSeparator()
-                    + "░░░░░░░░█░░░░░░░░░░░░▄█▄▄░░▄░░░█░▄▄▄░░░" + System.lineSeparator()
-                    + "░▄▄▄▄▄░░█░░░░░░▀░░░░▀█░░▀▄░░░░░█▀▀░██░░" + System.lineSeparator()
-                    + "░██▄▀██▄█░░░▄░░░░░░░██░░░░▀▀▀▀▀░░░░██░░" + System.lineSeparator()
-                    + "░░▀██▄▀██░░░░░░░░▀░██▀░░░░░░░░░░░░░▀██░" + System.lineSeparator()
-                    + "░░░░▀████░▀░░░░▄░░░██░░░▄█░░░░▄░▄█░░██░" + System.lineSeparator()
-                    + "░░░░░░░▀█░░░░▄░░░░░██░░░░▄░░░▄░░▄░░░██░" + System.lineSeparator()
-                    + "░░░░░░░▄█▄░░░░░░░░░░░▀▄░░▀▀▀▀▀▀▀▀░░▄▀░░" + System.lineSeparator()
-                    + "░░░░░░█▀▀█████████▀▀▀▀████████████▀░░░░" + System.lineSeparator()
-                    + "░░░░░░████▀░░███▀░░░░░░▀███░░▀██▀░░░░░░" + System.lineSeparator()
-                    + "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░" + System.lineSeparator();
+            "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░" + LS
+                    + "░░░░░░░░░░▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄░░░░░░░░░" + LS
+                    + "░░░░░░░░▄▀░░░░░░░░░░░░▄░░░░░░░▀▄░░░░░░░" + LS
+                    + "░░░░░░░░█░░▄░░░░▄░░░░░░░░░░░░░░█░░░░░░░" + LS
+                    + "░░░░░░░░█░░░░░░░░░░░░▄█▄▄░░▄░░░█░▄▄▄░░░" + LS
+                    + "░▄▄▄▄▄░░█░░░░░░▀░░░░▀█░░▀▄░░░░░█▀▀░██░░" + LS
+                    + "░██▄▀██▄█░░░▄░░░░░░░██░░░░▀▀▀▀▀░░░░██░░" + LS
+                    + "░░▀██▄▀██░░░░░░░░▀░██▀░░░░░░░░░░░░░▀██░" + LS
+                    + "░░░░▀████░▀░░░░▄░░░██░░░▄█░░░░▄░▄█░░██░" + LS
+                    + "░░░░░░░▀█░░░░▄░░░░░██░░░░▄░░░▄░░▄░░░██░" + LS
+                    + "░░░░░░░▄█▄░░░░░░░░░░░▀▄░░▀▀▀▀▀▀▀▀░░▄▀░░" + LS
+                    + "░░░░░░█▀▀█████████▀▀▀▀████████████▀░░░░" + LS
+                    + "░░░░░░████▀░░███▀░░░░░░▀███░░▀██▀░░░░░░" + LS
+                    + "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░" + LS;
 
     private final Scanner in;
 
@@ -73,4 +78,24 @@ public class Ui {
     public String readCommand() {
         return in.nextLine();
     }
+
+    public void addTaskInteraction(TaskList tasks, Task newTask) {
+        System.out.println("Got it. I've added this task:");
+        System.out.println(newTask.toString());
+
+        int size = tasks.getTotal();
+        System.out.println("You now have " + size + " tasks in the list.");
+    }
+
+    public void deleteTaskInteraction(TaskList tasks, Task tempTask) {
+        System.out.println(" Noted. I've removed this task: ");
+        System.out.println("   " + tempTask);
+        System.out.println(" Now you have " + tasks.getTotal() + " tasks in the list.");
+    }
+
+    public void doneTaskInteraction(Task tempTask) {
+        System.out.println(" Nice! I've marked this task as done: ");
+        System.out.println("   " + tempTask);
+    }
+
 }

@@ -2,6 +2,9 @@ package duke.task;
 
 import java.util.ArrayList;
 
+/**
+ * TaskList containing all the tasks.
+ */
 public class TaskList {
     private final ArrayList<Task> list;
 

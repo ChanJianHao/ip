@@ -21,8 +21,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+/**
+ * Handles storage and update for local task list.
+ */
 public class Storage {
-
     private static final String REGEX_DEADLINE_BRACKET_BY = "\\(by:";
     private static final String REGEX_EVENT_BRACKET_AT = "\\(at:";
     public static final String INVALID_SAVED_TASK_DATA = "Invalid saved task data found!";
@@ -30,11 +32,22 @@ public class Storage {
     private final String localTaskList;
     private final String localTaskFolder;
 
+    /**
+     * Constructor for local tasks storage.
+     *
+     * @param localTaskList   Path to tasks storage file.
+     * @param localTaskFolder Path to tasks storage folder.
+     */
     public Storage(String localTaskList, String localTaskFolder) {
         this.localTaskList = localTaskList;
         this.localTaskFolder = localTaskFolder;
     }
 
+    /**
+     * Saves the current TaskList to a save file.
+     *
+     * @param taskList taskList containing the tasks.
+     */
     public void updateLocalList(ArrayList<Task> taskList) {
         try {
             File data = new File(localTaskList);
@@ -52,16 +65,13 @@ public class Storage {
         }
     }
 
-    public String processSplitString(String[] splitInput) {
-        String taskDescription;
-        if (splitInput.length > 1) {
-            taskDescription = splitInput[1];
-        } else {
-            taskDescription = "";
-        }
-        return taskDescription;
-    }
-
+    /**
+     * Reads the local storage task list.
+     *
+     * @return taskList containing existing tasks in storage file.
+     * @throws IOException   If there are issues with file IO.
+     * @throws DukeException If there are issues with existing save data.
+     */
     public ArrayList<Task> readLocalList() throws IOException, DukeException {
         ArrayList<Task> savedTasks = new ArrayList<>();
 
@@ -69,7 +79,7 @@ public class Storage {
             Files.createDirectories(Paths.get(localTaskFolder));
             Files.createFile(Path.of(localTaskList));
         } catch (FileAlreadyExistsException ignored) {
-            // All is good
+            // All is good since file already exists
         }
 
         File f = new File(localTaskList); // create a File for the given file path
@@ -120,10 +130,33 @@ public class Storage {
         return savedTasks;
     }
 
-    public void addExistingTask(ArrayList<Task> taskList, Task newTask, char taskStatus) {
+    /**
+     * Updates task status and add it to taskList.
+     *
+     * @param taskList   taskList containing tasks.
+     * @param newTask    new task to be added.
+     * @param taskStatus task status for the new task.
+     */
+    private void addExistingTask(ArrayList<Task> taskList, Task newTask, char taskStatus) {
         if (taskStatus == 'T') {
             newTask.markAsDone();
         }
         taskList.add(newTask);
+    }
+
+    /**
+     * Splits string method for parsing task file.
+     *
+     * @param splitInput String array containing the split string.
+     * @return The second part of the split string, returns empty if not found.
+     */
+    private String processSplitString(String[] splitInput) {
+        String taskDescription;
+        if (splitInput.length > 1) {
+            taskDescription = splitInput[1];
+        } else {
+            taskDescription = "";
+        }
+        return taskDescription;
     }
 }

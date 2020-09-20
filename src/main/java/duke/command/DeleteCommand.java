@@ -12,9 +12,14 @@ import static duke.parser.Parser.EXCEPTION_INVALID_TASK_NUMBER;
  * Class representing a command to delete an item from the task list.
  */
 public class DeleteCommand extends Command {
-
     private final int taskNumber;
 
+    /**
+     * Performs input validation and initialization of task number.
+     *
+     * @param data task number to be deleted.
+     * @throws DukeException If task number is invalid.
+     */
     public DeleteCommand(String data) throws DukeException {
         data = data.trim();
         String numberPattern = "^[0-9]+$";
@@ -30,6 +35,14 @@ public class DeleteCommand extends Command {
         }
     }
 
+    /**
+     * Deletes the task.
+     *
+     * @param tasks   TaskList storing the tasks.
+     * @param ui      User interaction management.
+     * @param storage Local storage of tasks.
+     * @throws DukeException If task number is invalid.
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (taskNumber > tasks.getTotal() || taskNumber <= 0) {
             throw new DukeException(EXCEPTION_INVALID_TASK_NUMBER);
@@ -40,9 +53,8 @@ public class DeleteCommand extends Command {
             tasks.removeTask(taskIdx);
             storage.updateLocalList(tasks.getList());
 
-            System.out.println(" Noted. I've removed this task: ");
-            System.out.println("   " + tempTask);
-            System.out.println(" Now you have " + tasks.getTotal() + " tasks in the list.");
+            ui.deleteTaskInteraction(tasks, tempTask);
         }
     }
+
 }

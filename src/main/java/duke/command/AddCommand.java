@@ -5,21 +5,27 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Adds a task to TaskList.
+ */
 public class AddCommand extends Command {
-    private final Task task;
+    private final Task newTask;
 
-    public AddCommand(Task task) {
-        this.task = task;
+    public AddCommand(Task newTask) {
+        this.newTask = newTask;
     }
 
+    /**
+     * Executes the command by adding task to TaskList and saving the updates to the save file.
+     *
+     * @param tasks TaskList storing the tasks.
+     * @param ui User interaction management.
+     * @param storage Local storage of tasks.
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.addTask(task);
-        ui.printMessage("Got it. I've added this task:");
-        ui.printMessage(task.toString());
-
-        int size = tasks.getTotal();
-        ui.printMessage("You now have " + size + " tasks in the list");
-
+        tasks.addTask(newTask);
         storage.updateLocalList(tasks.getList());
+        ui.addTaskInteraction(tasks, newTask);
     }
+
 }
