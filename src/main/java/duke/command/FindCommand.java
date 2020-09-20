@@ -28,6 +28,7 @@ public class FindCommand extends Command {
      * @param storage Local storage of tasks.
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) {
+        ui.printMessage("The following are results for keyword: " + findString);
         for (int i = 0; i < tasks.getList().size(); i++) {
             Task tempTask = tasks.getList().get(i);
 

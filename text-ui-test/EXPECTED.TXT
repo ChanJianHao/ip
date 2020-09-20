@@ -29,33 +29,46 @@ You have no tasks to do, how great!
 ____________________________________________________________
 Got it. I've added this task:
 [T][✗] Task 123456789 YEY
-You now have 1 tasks in the list
+You now have 1 tasks in the list.
+____________________________________________________________
+ 1.[T][✗] Task 123456789 YEY
+____________________________________________________________
 ____________________________________________________________
  1.[T][✗] Task 123456789 YEY
 ____________________________________________________________
 Got it. I've added this task:
-[E][✗] CLASS for CS2113T (at: 11 Sept 20)
-You now have 2 tasks in the list
+[E][✗] CLASS for CS2113T (at: 2020/09/19 10:10:10)
+You now have 2 tasks in the list.
 ____________________________________________________________
  1.[T][✗] Task 123456789 YEY
- 2.[E][✗] CLASS for CS2113T (at: 11 Sept 20)
+ 2.[E][✗] CLASS for CS2113T (at: 2020/09/19 10:10:10)
+____________________________________________________________
+____________________________________________________________
+ 1.[T][✗] Task 123456789 YEY
+ 2.[E][✗] CLASS for CS2113T (at: 2020/09/19 10:10:10)
 ____________________________________________________________
 Got it. I've added this task:
-[D][✗] CS2113T iP (by: 2359 Sunday)
-You now have 3 tasks in the list
+[D][✗] CS2113T iP (by: 2021/01/14 01:25:25)
+You now have 3 tasks in the list.
+____________________________________________________________
+Got it. I've added this task:
+[D][✗] CS2113T iP FINAL (by: 2020/09/15 12:13:17)
+You now have 4 tasks in the list.
 ____________________________________________________________
  1.[T][✗] Task 123456789 YEY
- 2.[E][✗] CLASS for CS2113T (at: 11 Sept 20)
- 3.[D][✗] CS2113T iP (by: 2359 Sunday)
+ 2.[E][✗] CLASS for CS2113T (at: 2020/09/19 10:10:10)
+ 3.[D][✗] CS2113T iP (by: 2021/01/14 01:25:25)
+ 4.[D][✗] CS2113T iP FINAL (by: 2020/09/15 12:13:17)
 ____________________________________________________________
 Got it. I've added this task:
 [T][✗] nothing
-You now have 4 tasks in the list
+You now have 5 tasks in the list.
 ____________________________________________________________
  1.[T][✗] Task 123456789 YEY
- 2.[E][✗] CLASS for CS2113T (at: 11 Sept 20)
- 3.[D][✗] CS2113T iP (by: 2359 Sunday)
- 4.[T][✗] nothing
+ 2.[E][✗] CLASS for CS2113T (at: 2020/09/19 10:10:10)
+ 3.[D][✗] CS2113T iP (by: 2021/01/14 01:25:25)
+ 4.[D][✗] CS2113T iP FINAL (by: 2020/09/15 12:13:17)
+ 5.[T][✗] nothing
 ____________________________________________________________
 ____________________________________________________________
 ____________________________________________________________
@@ -64,59 +77,136 @@ ____________________________________________________________
    [T][✓] Task 123456789 YEY
 ____________________________________________________________
  1.[T][✓] Task 123456789 YEY
- 2.[E][✗] CLASS for CS2113T (at: 11 Sept 20)
- 3.[D][✗] CS2113T iP (by: 2359 Sunday)
- 4.[T][✗] nothing
+ 2.[E][✗] CLASS for CS2113T (at: 2020/09/19 10:10:10)
+ 3.[D][✗] CS2113T iP (by: 2021/01/14 01:25:25)
+ 4.[D][✗] CS2113T iP FINAL (by: 2020/09/15 12:13:17)
+ 5.[T][✗] nothing
 ____________________________________________________________
  Nice! I've marked this task as done: 
-   [E][✓] CLASS for CS2113T (at: 11 Sept 20)
+   [E][✓] CLASS for CS2113T (at: 2020/09/19 10:10:10)
 ____________________________________________________________
  1.[T][✓] Task 123456789 YEY
- 2.[E][✓] CLASS for CS2113T (at: 11 Sept 20)
- 3.[D][✗] CS2113T iP (by: 2359 Sunday)
- 4.[T][✗] nothing
+ 2.[E][✓] CLASS for CS2113T (at: 2020/09/19 10:10:10)
+ 3.[D][✗] CS2113T iP (by: 2021/01/14 01:25:25)
+ 4.[D][✗] CS2113T iP FINAL (by: 2020/09/15 12:13:17)
+ 5.[T][✗] nothing
 ____________________________________________________________
  Noted. I've removed this task: 
    [T][✓] Task 123456789 YEY
+ Now you have 4 tasks in the list.
+____________________________________________________________
+ 1.[E][✓] CLASS for CS2113T (at: 2020/09/19 10:10:10)
+ 2.[D][✗] CS2113T iP (by: 2021/01/14 01:25:25)
+ 3.[D][✗] CS2113T iP FINAL (by: 2020/09/15 12:13:17)
+ 4.[T][✗] nothing
+____________________________________________________________
+ Noted. I've removed this task: 
+   [D][✗] CS2113T iP (by: 2021/01/14 01:25:25)
  Now you have 3 tasks in the list.
 ____________________________________________________________
- 1.[E][✓] CLASS for CS2113T (at: 11 Sept 20)
- 2.[D][✗] CS2113T iP (by: 2359 Sunday)
+ 1.[E][✓] CLASS for CS2113T (at: 2020/09/19 10:10:10)
+ 2.[D][✗] CS2113T iP FINAL (by: 2020/09/15 12:13:17)
  3.[T][✗] nothing
 ____________________________________________________________
- Noted. I've removed this task: 
-   [D][✗] CS2113T iP (by: 2359 Sunday)
- Now you have 2 tasks in the list.
+ Nice! I've marked this task as done: 
+   [D][✓] CS2113T iP FINAL (by: 2020/09/15 12:13:17)
 ____________________________________________________________
- 1.[E][✓] CLASS for CS2113T (at: 11 Sept 20)
- 2.[T][✗] nothing
+ 1.[E][✓] CLASS for CS2113T (at: 2020/09/19 10:10:10)
+ 2.[D][✓] CS2113T iP FINAL (by: 2020/09/15 12:13:17)
+ 3.[T][✗] nothing
+____________________________________________________________
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this task:
+[E][✗] Tik-tok US Ban (at: 2020/09/20 00:00:00)
+You now have 4 tasks in the list.
+____________________________________________________________
+Got it. I've added this task:
+[E][✗] Yosemite explosion (at: 2021/09/20 00:34:56)
+You now have 5 tasks in the list.
+____________________________________________________________
+Got it. I've added this task:
+[D][✗] Aliens invasion (by: 2021/09/20 01:20:40)
+You now have 6 tasks in the list.
+____________________________________________________________
+ 1.[E][✓] CLASS for CS2113T (at: 2020/09/19 10:10:10)
+ 2.[D][✓] CS2113T iP FINAL (by: 2020/09/15 12:13:17)
+ 3.[T][✗] nothing
+ 4.[E][✗] Tik-tok US Ban (at: 2020/09/20 00:00:00)
+ 5.[E][✗] Yosemite explosion (at: 2021/09/20 00:34:56)
+ 6.[D][✗] Aliens invasion (by: 2021/09/20 01:20:40)
 ____________________________________________________________
  Nice! I've marked this task as done: 
    [T][✓] nothing
 ____________________________________________________________
- 1.[E][✓] CLASS for CS2113T (at: 11 Sept 20)
- 2.[T][✓] nothing
+ 1.[E][✓] CLASS for CS2113T (at: 2020/09/19 10:10:10)
+ 2.[D][✓] CS2113T iP FINAL (by: 2020/09/15 12:13:17)
+ 3.[T][✓] nothing
+ 4.[E][✗] Tik-tok US Ban (at: 2020/09/20 00:00:00)
+ 5.[E][✗] Yosemite explosion (at: 2021/09/20 00:34:56)
+ 6.[D][✗] Aliens invasion (by: 2021/09/20 01:20:40)
+____________________________________________________________
+ Your tasks on date Mon Sep 20 00:00:00 SGT 2021 are:
+ 5.[E][✗] Yosemite explosion (at: 2021/09/20 00:34:56)
+ 6.[D][✗] Aliens invasion (by: 2021/09/20 01:20:40)
 ____________________________________________________________
 Got it. I've added this task:
-[D][✗] Play Dota2 (by: Tonight)
-You now have 3 tasks in the list
-____________________________________________________________
-Got it. I've added this task:
-[E][✗] Apple iOS 14 (at: 15 Sept 2020)
-You now have 4 tasks in the list
-____________________________________________________________
- 1.[E][✓] CLASS for CS2113T (at: 11 Sept 20)
- 2.[T][✓] nothing
- 3.[D][✗] Play Dota2 (by: Tonight)
- 4.[E][✗] Apple iOS 14 (at: 15 Sept 2020)
+[D][✗] Time travel (by: 2021/09/20 03:33:44)
+You now have 7 tasks in the list.
 ____________________________________________________________
  Nice! I've marked this task as done: 
-   [D][✓] Play Dota2 (by: Tonight)
+   [D][✓] Aliens invasion (by: 2021/09/20 01:20:40)
 ____________________________________________________________
- 1.[E][✓] CLASS for CS2113T (at: 11 Sept 20)
- 2.[T][✓] nothing
- 3.[D][✓] Play Dota2 (by: Tonight)
- 4.[E][✗] Apple iOS 14 (at: 15 Sept 2020)
+ Your tasks on date Mon Sep 20 00:00:00 SGT 2021 are:
+ 5.[E][✗] Yosemite explosion (at: 2021/09/20 00:34:56)
+ 6.[D][✓] Aliens invasion (by: 2021/09/20 01:20:40)
+ 7.[D][✗] Time travel (by: 2021/09/20 03:33:44)
+____________________________________________________________
+ 1.[E][✓] CLASS for CS2113T (at: 2020/09/19 10:10:10)
+ 2.[D][✓] CS2113T iP FINAL (by: 2020/09/15 12:13:17)
+ 3.[T][✓] nothing
+ 4.[E][✗] Tik-tok US Ban (at: 2020/09/20 00:00:00)
+ 5.[E][✗] Yosemite explosion (at: 2021/09/20 00:34:56)
+ 6.[D][✓] Aliens invasion (by: 2021/09/20 01:20:40)
+ 7.[D][✗] Time travel (by: 2021/09/20 03:33:44)
+____________________________________________________________
+Got it. I've added this task:
+[D][✗] Aliens deciphering (by: 2021/09/20 05:20:40)
+You now have 8 tasks in the list.
+____________________________________________________________
+ 1.[E][✓] CLASS for CS2113T (at: 2020/09/19 10:10:10)
+ 2.[D][✓] CS2113T iP FINAL (by: 2020/09/15 12:13:17)
+ 3.[T][✓] nothing
+ 4.[E][✗] Tik-tok US Ban (at: 2020/09/20 00:00:00)
+ 5.[E][✗] Yosemite explosion (at: 2021/09/20 00:34:56)
+ 6.[D][✓] Aliens invasion (by: 2021/09/20 01:20:40)
+ 7.[D][✗] Time travel (by: 2021/09/20 03:33:44)
+ 8.[D][✗] Aliens deciphering (by: 2021/09/20 05:20:40)
+____________________________________________________________
+The following are results for keyword: Aliens
+ 6.[D][✓] Aliens invasion (by: 2021/09/20 01:20:40)
+ 8.[D][✗] Aliens deciphering (by: 2021/09/20 05:20:40)
+____________________________________________________________
+The following are results for keyword: Apple
+____________________________________________________________
+Got it. I've added this task:
+[E][✗] Apple iOS 16 (at: 2022/09/21 10:10:13)
+You now have 9 tasks in the list.
+____________________________________________________________
+The following are results for keyword: Apple
+ 9.[E][✗] Apple iOS 16 (at: 2022/09/21 10:10:13)
+____________________________________________________________
+The following are results for keyword: Play
+____________________________________________________________
+ 1.[E][✓] CLASS for CS2113T (at: 2020/09/19 10:10:10)
+ 2.[D][✓] CS2113T iP FINAL (by: 2020/09/15 12:13:17)
+ 3.[T][✓] nothing
+ 4.[E][✗] Tik-tok US Ban (at: 2020/09/20 00:00:00)
+ 5.[E][✗] Yosemite explosion (at: 2021/09/20 00:34:56)
+ 6.[D][✓] Aliens invasion (by: 2021/09/20 01:20:40)
+ 7.[D][✗] Time travel (by: 2021/09/20 03:33:44)
+ 8.[D][✗] Aliens deciphering (by: 2021/09/20 05:20:40)
+ 9.[E][✗] Apple iOS 16 (at: 2022/09/21 10:10:13)
 ____________________________________________________________
  Bye. Hope to see you again soon!
 ____________________________________________________________

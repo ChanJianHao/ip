@@ -43,7 +43,7 @@ public class ScheduleCommand extends Command {
      * @param storage Local storage of tasks.
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        System.out.println(" Your tasks for date " + checkDate + " are:");
+        ui.printMessage(" Your tasks on date " + checkDate + " are:");
 
         for (int i = 0; i < tasks.getList().size(); i++) {
             Date taskDate;
