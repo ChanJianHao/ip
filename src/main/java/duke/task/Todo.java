@@ -1,8 +1,15 @@
 package duke.task;
 
+import java.util.Date;
+
 public class Todo extends Task {
     public Todo(String description) {
         super(description);
+    }
+
+    @Override
+    public Date getDatetime() {
+        return null;
     }
 
     @Override

@@ -9,7 +9,6 @@ import duke.ui.Ui;
 import static duke.parser.Parser.EXCEPTION_INVALID_TASK_NUMBER;
 
 public class DoneCommand extends Command {
-
     private final int taskNumber;
 
     public DoneCommand(String data) throws DukeException {
