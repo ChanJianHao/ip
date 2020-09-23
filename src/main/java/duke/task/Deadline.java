@@ -29,6 +29,11 @@ public class Deadline extends Task {
         return "[D]" + super.toString() + "(by: " + TASK_DATETIME_FORMAT.format(dueDate) + ")";
     }
 
+    /**
+     * Returns appropriate format for task to be stored in local .txt file.
+     *
+     * @return string in local task file format.
+     */
     @Override
     public String toFileString() {
         return "[D]" + super.toFileString() + "(by: " + TASK_DATETIME_FORMAT.format(dueDate) + ")";

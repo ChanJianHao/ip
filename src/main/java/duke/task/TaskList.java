@@ -28,6 +28,10 @@ public class TaskList {
         list.remove(taskNum);
     }
 
+    /**
+     * Gets current total size of task list.
+     * @return size of task list.
+     */
     public int getTotal() {
         return list.size();
     }

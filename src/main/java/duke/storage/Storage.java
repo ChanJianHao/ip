@@ -14,12 +14,12 @@ import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+
+import static duke.parser.Parser.TASK_DATETIME_FORMAT;
 
 /**
  * Handles storage and update for local task list.
@@ -27,7 +27,10 @@ import java.util.Scanner;
 public class Storage {
     private static final String REGEX_DEADLINE_BRACKET_BY = "\\(by:";
     private static final String REGEX_EVENT_BRACKET_AT = "\\(at:";
-    public static final String INVALID_SAVED_TASK_DATA = "Invalid saved task data found!";
+    private static final String INVALID_SAVED_TASK_DATA = "Invalid saved task data found!";
+    private static final int TASK_TYPE_INDEX = 1;
+    private static final int TASK_STATUS_INDEX = 4;
+    private static final int TASK_STRING_INDEX = 7;
 
     private final String localTaskList;
     private final String localTaskFolder;
@@ -82,19 +85,21 @@ public class Storage {
             // All is good since file already exists
         }
 
-        File f = new File(localTaskList); // create a File for the given file path
+        // create a File for the given file path
+        File f = new File(localTaskList);
 
         try {
-            Scanner inputFile = new Scanner(f); // create a Scanner using the File as the source
+            // create a Scanner using the File as the source
+            Scanner inputFile = new Scanner(f);
+
             while (inputFile.hasNext()) {
                 String line = inputFile.nextLine();
 
-                char taskType = line.charAt(1);
-                char taskStatus = line.charAt(4);
-                String taskString = line.substring(7);
+                char taskType = line.charAt(TASK_TYPE_INDEX);
+                char taskStatus = line.charAt(TASK_STATUS_INDEX);
+                String taskString = line.substring(TASK_STRING_INDEX);
 
                 Date taskDate;
-                DateFormat taskDateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 
                 if (taskType == 'T') {
                     Task newTask = new Todo(taskString);
@@ -104,7 +109,7 @@ public class Storage {
                     String at = processSplitString(eventSplit);
                     at = at.substring(0, at.length() - 1);
 
-                    taskDate = taskDateFormat.parse(at);
+                    taskDate = TASK_DATETIME_FORMAT.parse(at);
 
                     Event newTask = new Event(eventSplit[0], taskDate);
                     addExistingTask(savedTasks, newTask, taskStatus);
@@ -113,7 +118,7 @@ public class Storage {
                     String by = processSplitString(deadlineSplit);
                     by = by.substring(0, by.length() - 1);
 
-                    taskDate = taskDateFormat.parse(by);
+                    taskDate = TASK_DATETIME_FORMAT.parse(by);
 
                     Deadline newTask = new Deadline(deadlineSplit[0], taskDate);
                     addExistingTask(savedTasks, newTask, taskStatus);

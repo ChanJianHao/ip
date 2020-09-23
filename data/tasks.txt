@@ -1,1 +1,5 @@
-[T][T] hey
+[T][F] join sports club
+[D][F] return book (by: 2020/10/17 01:15:00)
+[T][F] cook pasta for dinner
+[E][F] Apple stock split (at: 2020/09/03 10:00:15)
+[D][F] CS2113 iP (by: 2020/10/02 11:59:00)

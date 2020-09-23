@@ -14,11 +14,19 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    /**
+     * Get status icon of task.
+     * @return Tick symbol if task is done, else Cross symbol.
+     */
     public String getStatusIcon() {
         // returns tick or X symbols
         return (isDone ? "✓" : "✗");
     }
 
+    /**
+     * Get status of task whether it is done or not.
+     * @return status of task.
+     */
     public boolean getStatus() {
         return isDone;
     }
@@ -33,6 +41,11 @@ public abstract class Task {
         return description;
     }
 
+    /**
+     * Returns appropriate format for task to be stored in local .txt file.
+     *
+     * @return string in local task file format.
+     */
     public String toFileString() {
         char doneFlag = 'F';
 
@@ -43,6 +56,9 @@ public abstract class Task {
         return "[" + doneFlag + "] " + description;
     }
 
+    /**
+     * Marks task as done.
+     */
     public void markAsDone() {
         this.isDone = true;
     }

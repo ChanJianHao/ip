@@ -20,6 +20,11 @@ public class Todo extends Task {
         return "[T]" + super.toString();
     }
 
+    /**
+     * Returns appropriate format for task to be stored in local .txt file.
+     *
+     * @return string in local task file format.
+     */
     @Override
     public String toFileString() {
         return "[T]" + super.toFileString();
