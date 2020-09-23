@@ -12,6 +12,7 @@ import static duke.parser.Parser.EXCEPTION_INVALID_TASK_NUMBER;
  * Mark a Task as done.
  */
 public class DoneCommand extends Command {
+    public static final String NUMBER_REGEX = "^[0-9]+$";
     private final int taskNumber;
 
     /**
@@ -22,9 +23,8 @@ public class DoneCommand extends Command {
      */
     public DoneCommand(String data) throws DukeException {
         data = data.trim();
-        String numberPattern = "^[0-9]+$";
 
-        if (!data.matches(numberPattern)) {
+        if (!data.matches(NUMBER_REGEX)) {
             throw new DukeException(EXCEPTION_INVALID_TASK_NUMBER);
         } else {
             try {

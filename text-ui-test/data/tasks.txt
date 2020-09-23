@@ -1,0 +1,9 @@
+[E][T] CLASS for CS2113T (at: 2020/09/19 10:10:10)
+[D][T] CS2113T iP FINAL (by: 2020/09/15 12:13:17)
+[T][T] nothing
+[E][F] Tik-tok US Ban (at: 2020/09/20 12:00:00)
+[E][F] Yosemite explosion (at: 2021/09/20 12:34:56)
+[D][T] Aliens invasion (by: 2021/09/20 01:20:40)
+[D][F] Time travel (by: 2021/09/20 03:33:44)
+[D][F] Aliens deciphering (by: 2021/09/20 05:20:40)
+[E][F] Apple iOS 16 (at: 2022/09/21 10:10:13)

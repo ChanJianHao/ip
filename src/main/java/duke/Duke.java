@@ -15,6 +15,8 @@ import java.io.IOException;
 public class Duke {
     public static final String LOCAL_TASK_LIST = "data/tasks.txt";
     public static final String LOCAL_TASK_FOLDER = "data";
+    public static final String EXCEPTION_FILE_IO = "File IO exception, we " +
+            "had difficulty managing your local task file.";
 
     private final Storage storage;
     private final Parser parser;
@@ -29,10 +31,10 @@ public class Duke {
         parser = new Parser();
         storage = new Storage(LOCAL_TASK_LIST, LOCAL_TASK_FOLDER);
         try {
-            tasks = new TaskList(storage.readLocalList());
+            tasks = new TaskList(storage.readLocalList(parser));
         } catch (IOException | DukeException e) {
             tasks = new TaskList();
-            System.out.println("File IO exception, we had difficulty managing your local task file.");
+            System.out.println(EXCEPTION_FILE_IO);
         }
     }
 

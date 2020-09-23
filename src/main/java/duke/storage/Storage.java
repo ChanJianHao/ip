@@ -1,6 +1,7 @@
 package duke.storage;
 
 import duke.exception.DukeException;
+import duke.parser.Parser;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -28,9 +29,13 @@ public class Storage {
     private static final String REGEX_DEADLINE_BRACKET_BY = "\\(by:";
     private static final String REGEX_EVENT_BRACKET_AT = "\\(at:";
     private static final String INVALID_SAVED_TASK_DATA = "Invalid saved task data found!";
+
     private static final int TASK_TYPE_INDEX = 1;
     private static final int TASK_STATUS_INDEX = 4;
     private static final int TASK_STRING_INDEX = 7;
+    private static final char TODO = 'T';
+    private static final char DEADLINE = 'D';
+    private static final char EVENT = 'E';
 
     private final String localTaskList;
     private final String localTaskFolder;
@@ -75,7 +80,7 @@ public class Storage {
      * @throws IOException   If there are issues with file IO.
      * @throws DukeException If there are issues with existing save data.
      */
-    public ArrayList<Task> readLocalList() throws IOException, DukeException {
+    public ArrayList<Task> readLocalList(Parser parser) throws IOException, DukeException {
         ArrayList<Task> savedTasks = new ArrayList<>();
 
         try {
@@ -101,21 +106,21 @@ public class Storage {
 
                 Date taskDate;
 
-                if (taskType == 'T') {
+                if (taskType == TODO) {
                     Task newTask = new Todo(taskString);
                     addExistingTask(savedTasks, newTask, taskStatus);
-                } else if (taskType == 'E') {
+                } else if (taskType == EVENT) {
                     String[] eventSplit = taskString.split(REGEX_EVENT_BRACKET_AT, 2);
-                    String at = processSplitString(eventSplit);
+                    String at = parser.processSplitString(eventSplit);
                     at = at.substring(0, at.length() - 1);
 
                     taskDate = TASK_DATETIME_FORMAT.parse(at);
 
                     Event newTask = new Event(eventSplit[0], taskDate);
                     addExistingTask(savedTasks, newTask, taskStatus);
-                } else if (taskType == 'D') {
+                } else if (taskType == DEADLINE) {
                     String[] deadlineSplit = taskString.split(REGEX_DEADLINE_BRACKET_BY, 2);
-                    String by = processSplitString(deadlineSplit);
+                    String by = parser.processSplitString(deadlineSplit);
                     by = by.substring(0, by.length() - 1);
 
                     taskDate = TASK_DATETIME_FORMAT.parse(by);
@@ -149,19 +154,4 @@ public class Storage {
         taskList.add(newTask);
     }
 
-    /**
-     * Splits string method for parsing task file.
-     *
-     * @param splitInput String array containing the split string.
-     * @return The second part of the split string, returns empty if not found.
-     */
-    private String processSplitString(String[] splitInput) {
-        String taskDescription;
-        if (splitInput.length > 1) {
-            taskDescription = splitInput[1];
-        } else {
-            taskDescription = "";
-        }
-        return taskDescription;
-    }
 }

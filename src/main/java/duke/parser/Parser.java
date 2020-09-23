@@ -40,6 +40,7 @@ public class Parser {
     public static final String EXCEPTION_INVALID_TASK_NUMBER = "That's an invalid task number!";
     public static final String EXCEPTION_INVALID_COMMAND = "I'm sorry, but I don't know what that means.";
     public static final String EXCEPTION_INVALID_DATETIME = "Did you include a valid datetime? yyyy/MM/dd hh:mm:ss";
+    public static final String EMPTY_STRING = "";
 
 
     /**
@@ -103,7 +104,7 @@ public class Parser {
         if (splitInput.length > 1) {
             taskDescription = splitInput[1];
         } else {
-            taskDescription = "";
+            taskDescription = EMPTY_STRING;
         }
         return taskDescription;
     }
