@@ -170,34 +170,55 @@ The expected outcome:
 
 ## 4. FAQ
 
+**Q**: Where are the tasks stored at after I close the program?
+ **A**: They are located in `/data/tasks.txt` of the directory you ran the program in.
+
 **Q**: How do I transfer my saved tasks list to another Computer?  
 **A**: Run the application on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous `./data/tasks.txt` folder.
 
 ## 5. Command Summary
 
--   **list**  : `list`
-    
--   **todo**  :  `todo [TASK_NAME]`
-e.g. `todo cook pasta for dinner`
-   
--   **event**  :  `event [TASK_NAME] [at/ yyyy/MM/dd hh:mm:ss]`
-e.g. `event Apple stock split /at 2020/09/3 10:00:15`
-
--   **deadline**  :  `deadline [TASK_NAME] [by/ yyyy/MM/dd hh:mm:ss]`
-e.g. `deadline CS2113 iP /by 2020/10/02 23:59:00`
-
--   **done**  :  `done <INDEX>`
-e.g. `done 2`
-
--   **delete**  :  `delete <INDEX>`
-e.g. `delete 2`
-
--   **find**  :  `find <SEARCH_TERM>`
-e.g. `find Apple`
-
--   **schedule**  :  `schedule <yyyy/MM/dd>`
-e.g. `schedule 2020/09/3`
-
--   **bye**  :  `bye`
-
-
+<table>
+<tbody>
+<tr>
+<th>Command</th>
+<th>Format &amp; Examples</th>
+</tr>
+<tr>
+<td>list</td>
+<td>`list`</td>
+</tr>
+<tr>
+<td>todo</td>
+<td>`todo [TASK_NAME]`<br />e.g. `todo cook pasta for dinner`</td>
+</tr>
+<tr>
+<td>event</td>
+<td>`event [TASK_NAME] [at/ yyyy/MM/dd hh:mm:ss]`<br />e.g. `event Apple stock split /at 2020/09/3 10:00:15`</td>
+</tr>
+<tr>
+<td>deadline</td>
+<td>`deadline [TASK_NAME] [by/ yyyy/MM/dd hh:mm:ss]`<br />e.g. `deadline CS2113 iP /by 2020/10/02 23:59:00`</td>
+</tr>
+<tr>
+<td>done</td>
+<td>`done &lt;INDEX&gt;`<br />e.g. `done 2`</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>delete &lt;INDEX&gt;`<br />e.g. `delete 2`</td>
+</tr>
+<tr>
+<td>find</td>
+<td>`find &lt;SEARCH_TERM&gt;`<br />e.g. `find Apple`</td>
+</tr>
+<tr>
+<td>schedule</td>
+<td>`schedule &lt;yyyy/MM/dd&gt;`<br />e.g. `schedule 2020/09/3`</td>
+</tr>
+<tr>
+<td>bye</td>
+<td>`bye`</td>
+</tr>
+</tbody>
+</table>
