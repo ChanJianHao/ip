@@ -5,6 +5,27 @@ By: `Chan Jian Hao` Since: `September 2020` License: `MIT`
 
 ![logo](https://i.imgur.com/Z2KOn6Y.png)
 
+- [Neko-bot  User Guide](#neko-bot--user-guide)
+  * [1. Introduction](#1-introduction)
+  * [2. Quick Start with Intellij](#2-quick-start-with-intellij)
+  * [3. Features](#3-features)
+    + [3.1 Task Manager](#31-task-manager)
+    + [3.2 Search](#32-search)
+    + [3.3 Tasks Storage](#33-tasks-storage)
+  * [4. Usage](#4-usage)
+    + [4.1 Listing all Tasks `list`](#41-listing-all-tasks--list-)
+    + [4.2 Adding a Todo task `todo`](#42-adding-a-todo-task--todo-)
+    + [4.3 Adding an Event task `event`](#43-adding-an-event-task--event-)
+    + [4.4 Adding a Deadline task `deadline`](#44-adding-a-deadline-task--deadline-)
+    + [4.5 Completing a Task `done`](#45-completing-a-task--done-)
+    + [4.6 Deleting a Task `delete`](#46-deleting-a-task--delete-)
+    + [4.7 Finding Task  `find`](#47-finding-task---find-)
+    + [4.8 Find by Due Date `schedule`](#48-find-by-due-date--schedule-)
+    + [4.9 Exiting the program `bye`](#49-exiting-the-program--bye-)
+  * [5. FAQ](#5-faq)
+  * [6. Command Summary](#6-command-summary)
+
+
 
 
 ## 1. Introduction
@@ -38,7 +59,7 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 
 ### 3.1 Task Manager
 
- 1. Adds tasks (Todo, Deadline, or Event) to the list.
+ 1. Adds tasks (e.g., Todo, Deadline, or Event) to the list.
  2. Marks task as done.
  3. Removes task when it no longer needs tracking.
  4. Listing of all tasks.
