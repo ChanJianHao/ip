@@ -3,31 +3,15 @@
 #  Neko-bot  User Guide
 By: `Chan Jian Hao` Since: `September 2020` License: `MIT`
 
-![enter image description here](https://i.imgur.com/Z2KOn6Y.png)
-
-- [Neko-bot  User Guide](#neko-bot--user-guide)
-  * [1. Introduction](#1-introduction)
-  * [2. Quick Start with Intellij](#2-quick-start-with-intellij)
-  * [3. Features](#3-features)
-    + [3.1 Listing all Tasks `list`](#31-listing-all-tasks--list-)
-    + [3.2 Adding a Todo task `todo`](#32-adding-a-todo-task--todo-)
-    + [3.3 Adding an Event task `event`](#33-adding-an-event-task--event-)
-    + [3.4 Adding a Deadline task `deadline`](#34-adding-a-deadline-task--deadline-)
-    + [3.5 Completing a Task `done`](#35-completing-a-task--done-)
-    + [3.6 Deleting a Task `delete`](#36-deleting-a-task--delete-)
-    + [3.7 Finding Task  `find`](#37-finding-task---find-)
-      - [3.8 Find by Due Date `schedule`](#38-find-by-due-date--schedule-)
-    + [3.9 Exiting the program `bye`](#39-exiting-the-program--bye-)
-  * [4. FAQ](#4-faq)
-  * [5. Command Summary](#5-command-summary)
+![logo](https://i.imgur.com/Z2KOn6Y.png)
 
 
 ## 1. Introduction
-Neko-bot is a simple desktop application that is used for managing and tracking tasks (e.g. Todos, Events, Deadlines). 
+Neko-bot is a simple desktop application used for managing and tracking tasks (e.g., Todos, Events, Deadlines).
 
 It allows you to add, remove, and mark tasks as done whenever you want to, and it features a persistent storage capability where you can always view your existing task list each time you start the program.
 
-Last but not least, it also allows you to search tasks by their names and find events/deadlines based on their dates. 
+Finally, it allows you to search for tasks by their names and find events/deadlines based on their dates.
 
 ## 2. Quick Start with Intellij
 Prerequisites: JDK 11, update Intellij to the most recent version.
@@ -35,13 +19,13 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project dialog first)
 1. Set up the correct JDK version, as follows:
    1. Click `Configure` > `Structure for New Projects` and then `Project Settings` > `Project` > `Project SDK`
-   1. If JDK 11 is listed in the drop down, select it. If it is not, click `New...` and select the directory where you installed JDK 11
+   1. If JDK 11 is listed in the drop-down, select it. If it is not, click `New...` and select the directory where you installed JDK 11
    1. Click `OK`
 1. Import the project into Intellij as follows:
    1. Click `Open or Import`.
    1. Select the project directory, and click `OK`
    1. If there are any further prompts, accept the defaults.
-1. After the importing is complete, locate the `src/main/java/duke.Duke.java` file, right-click it, and choose `Run duke.Duke.main()`. If the setup is correct, you should see something like the below:
+1. After the importing is complete, locate the `src/main/java/duke/Duke.java` file, right-click it, and choose `Run duke.Duke.main()`. If the setup is correct, you should see something like the below:
 
     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ ░░░░░░░░░░▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄░░░░░░░░░ ░░░░░░░░▄▀░░░░░░░░░░░░▄░░░░░░░▀▄░░░░░░░ ░░░░░░░░█░░▄░░░░▄░░░░░░░░░░░░░░█░░░░░░░ ░░░░░░░░█░░░░░░░░░░░░▄█▄▄░░▄░░░█░▄▄▄░░░ ░▄▄▄▄▄░░█░░░░░░▀░░░░▀█░░▀▄░░░░░█▀▀░██░░ ░██▄▀██▄█░░░▄░░░░░░░██░░░░▀▀▀▀▀░░░░██░░ ░░▀██▄▀██░░░░░░░░▀░██▀░░░░░░░░░░░░░▀██░ ░░░░▀████░▀░░░░▄░░░██░░░▄█░░░░▄░▄█░░██░ ░░░░░░░▀█░░░░▄░░░░░██░░░░▄░░░▄░░▄░░░██░ ░░░░░░░▄█▄░░░░░░░░░░░▀▄░░▀▀▀▀▀▀▀▀░░▄▀░░ ░░░░░░█▀▀█████████▀▀▀▀████████████▀░░░░ ░░░░░░████▀░░███▀░░░░░░▀███░░▀██▀░░░░░░ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
     
@@ -58,7 +42,7 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 -   Words in  `UPPER_CASE`  are the parameters to be supplied by the user e.g. in  `todo TASKNAME`,  `TASKNAME`  is a parameter which can be used as  `todo homework`.
     
 ### 3.1 Listing all Tasks `list`
-This will list all task which the user have added.
+This will list all task which the user has added.
 
 Format: `list`
 
@@ -159,7 +143,7 @@ The expected outcome:
 
 ####  3.8 Find by Due Date `schedule`
 
-Searches and prints all tasks that on specified date.  
+Searches and prints all tasks that on a specified date.  
 
 Format: `schedule yyyy/MM/dd`  
 
