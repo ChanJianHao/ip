@@ -73,6 +73,9 @@ public class Ui {
         showLine();
     }
 
+    /**
+     * Prints horizontal line.
+     */
     public void showLine() {
         System.out.println(HORIZONTAL_LINE);
     }

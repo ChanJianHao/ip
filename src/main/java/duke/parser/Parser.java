@@ -49,7 +49,7 @@ public class Parser {
      * @return Returns true unless user enters bye, which would terminate main menu.
      */
     public Command processCommand(String input) throws DukeException {
-        // Split string into 2's using space
+        // Splits string into 2's using space
         String[] splitInput = input.split(REGEX_SINGLE_SPACE, 2);
         String taskDescription = processSplitString(splitInput);
 
@@ -133,7 +133,6 @@ public class Parser {
         }
 
         Date taskDate;
-
         try {
             taskDate = dateFormat.parse(dateString);
             return taskDate;

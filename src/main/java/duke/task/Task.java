@@ -1,6 +1,5 @@
 package duke.task;
 
-import java.util.Date;
 
 /**
  * Abstract class for Task.
@@ -16,6 +15,7 @@ public abstract class Task {
 
     /**
      * Get status icon of task.
+     *
      * @return Tick symbol if task is done, else Cross symbol.
      */
     public String getStatusIcon() {
@@ -25,18 +25,22 @@ public abstract class Task {
 
     /**
      * Get status of task whether it is done or not.
+     *
      * @return status of task.
      */
     public boolean getStatus() {
         return isDone;
     }
 
-    public abstract Date getDatetime();
-
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
     }
 
+    /**
+     * Gets description of the task.
+     *
+     * @return returns description of task.
+     */
     public String getDescription() {
         return description;
     }

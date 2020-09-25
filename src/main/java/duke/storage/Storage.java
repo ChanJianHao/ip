@@ -90,11 +90,11 @@ public class Storage {
             // All is good since file already exists
         }
 
-        // create a File for the given file path
+        // Creates a file for the given file path
         File f = new File(localTaskList);
 
         try {
-            // create a Scanner using the File as the source
+            // Creates a Scanner using the File as the source
             Scanner inputFile = new Scanner(f);
 
             while (inputFile.hasNext()) {

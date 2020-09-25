@@ -46,18 +46,26 @@ public class ScheduleCommand extends Command {
         ui.printMessage(" Your tasks on date " + checkDate + " are:");
 
         for (int i = 0; i < tasks.getList().size(); i++) {
-            Date taskDate;
+            Date taskDate = null;
             Task tempTask = tasks.getList().get(i);
 
-            if (tempTask instanceof Event || tempTask instanceof Deadline) {
-                try {
-                    taskDate = TASK_DATE_FORMAT.parse(TASK_DATE_FORMAT.format(tempTask.getDatetime()));
-                    if (taskDate.compareTo(checkDate) == 0) {
-                        ui.printMessage(" " + (i + 1) + "." + tempTask);
-                    }
-                } catch (ParseException e) {
-                    e.printStackTrace();
+            try {
+                // If task is of type Event or Deadline, check their date
+                if (tempTask instanceof Event) {
+                    String dateString = TASK_DATE_FORMAT.format(((Event) tempTask).getDatetime());
+                    taskDate = TASK_DATE_FORMAT.parse(dateString);
+                } else if (tempTask instanceof Deadline) {
+                    String dateString = TASK_DATE_FORMAT.format(((Deadline) tempTask).getDatetime());
+                    taskDate = TASK_DATE_FORMAT.parse(dateString);
                 }
+
+                // Prints task if date matches the date provided by user
+                if (taskDate != null && taskDate.compareTo(checkDate) == 0) {
+                    ui.printMessage(" " + (i + 1) + "." + tempTask);
+                }
+
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
         }
     }
