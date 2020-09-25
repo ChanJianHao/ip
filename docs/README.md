@@ -1,35 +1,20 @@
-#  [Neko-bot  User Guide](#neko-bot---user-guide)
+
+#  Neko-bot  User Guide
 By: `Chan Jian Hao` Since: `September 2020` License: `MIT`
 
 ![enter image description here](https://i.imgur.com/Z2KOn6Y.png)
 
-## [Table of contents](#table-of-contents)
-- [Neko-bot - User Guide](#neko-bot---user-guide)
-  * [Table of contents](#table-of-contents)
-  * [1. Introduction](#1-introduction)
-  * [2. Quick Start with Intellij](#2-quick-start-with-intellij)
-  * [3. Features](#3-features)
-    + [3.1 Listing all Tasks `list`](#31-listing-all-tasks--list-)
-    + [3.2 Adding a Todo task `todo`](#32-adding-a-todo-task--todo-)
-    + [3.3 Adding an Event task `event`](#33-adding-an-event-task--event-)
-    + [3.4 Adding a Deadline task `deadline`](#34-adding-a-deadline-task--deadline-)
-    + [3.5 Completing a Task `done`](#35-completing-a-task--done-)
-    + [3.6 Deleting a Task `delete`](#36-deleting-a-task--delete-)
-    + [3.7 Finding Task  `find`](#37-finding-task---find-)
-      - [3.8 Find by Due Date `schedule`](#38-find-by-due-date--schedule-)
-    + [3.9 Exiting the program `bye`](#39-exiting-the-program--bye-)
-  * [4. FAQ](#4-faq)
-  * [5. Command Summary](#5-command-summary)
+{:toc}
 
 
-## [1. Introduction](#1-introduction)
+## 1. Introduction
 Neko-bot is a simple desktop application that is used for managing and tracking tasks (e.g. Todos, Events, Deadlines). 
 
 It allows you to add, remove, and mark tasks as done whenever you want to, and it features a persistent storage capability where you can always view your existing task list each time you start the program.
 
 Last but not least, it also allows you to search tasks by their names and find events/deadlines based on their dates. 
 
-## [2. Quick Start with Intellij](#2-quick-start-with-intellij)
+## 2. Quick Start with Intellij
 Prerequisites: JDK 11, update Intellij to the most recent version.
 
 1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project dialog first)
