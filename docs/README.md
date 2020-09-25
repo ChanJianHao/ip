@@ -6,12 +6,11 @@ By: `Chan Jian Hao` Since: `September 2020` License: `MIT`
 ![logo](https://i.imgur.com/Z2KOn6Y.png)
 
 
+
 ## 1. Introduction
+
 Neko-bot is a simple desktop application used for managing and tracking tasks (e.g., Todos, Events, Deadlines).
 
-It allows you to add, remove, and mark tasks as done whenever you want to, and it features a persistent storage capability where you can always view your existing task list each time you start the program.
-
-Finally, it allows you to search for tasks by their names and find events/deadlines based on their dates.
 
 ## 2. Quick Start with Intellij
 Prerequisites: JDK 11, update Intellij to the most recent version.
@@ -36,12 +35,31 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 
 
 ## 3. Features
+
+### 3.1 Task Manager
+
+ 1. Adds tasks (Todo, Deadline, or Event) to the list.
+ 2. Marks task as done.
+ 3. Removes task when it no longer needs tracking.
+ 4. Listing of all tasks.
+
+### 3.2 Search
+
+ 1. Search for a task using keyword.
+ 2. Search for a task by providing a specific date.
+
+### 3.3 Tasks Storage
+
+ 1. Automatically saves your task whenever you make changes.
+ 2. Available in a .txt file for easy reading and importing to other programs.
+
+## 4. Usage
  
 **Command Format**
 
 -   Words in  `UPPER_CASE`  are the parameters to be supplied by the user e.g. in  `todo TASKNAME`,  `TASKNAME`  is a parameter which can be used as  `todo homework`.
     
-### 3.1 Listing all Tasks `list`
+### 4.1 Listing all Tasks `list`
 This will list all task which the user has added.
 
 Format: `list`
@@ -52,7 +70,7 @@ Expected Outcome:
  2.[E][✗] project meeting (at: 2020/08/06 14:00:00)
  3.[D][✗] return book (by: 2020/10/17 01:15:00)
 ```
-###  3.2 Adding a Todo task `todo`
+###  4.2 Adding a Todo task `todo`
 
 This will add a Todo task to the task list.
 
@@ -67,7 +85,7 @@ Got it. I've added this task:
 You now have 4 tasks in the list.
 ```    
 
-###  3.3 Adding an Event task `event`
+###  4.3 Adding an Event task `event`
 
 This will add an event task to the task list.
 
@@ -85,7 +103,7 @@ The expected outcome:
     [E][✗] Apple stock split (at: 2020/09/03 10:00:15)
     You now have 5 tasks in the list.
 
-###  3.4 Adding a Deadline task `deadline`
+###  4.4 Adding a Deadline task `deadline`
 
 This will add a deadline task to the task list
 
@@ -101,7 +119,7 @@ The expected outcome:
     Got it. I've added this task:
     [D][✗] CS2113 iP (by: 2020/10/02 11:59:00)
     You now have 6 tasks in the list.
-###  3.5 Completing a Task `done`
+###  4.5 Completing a Task `done`
 
 This will mark a task as completed.  
 
@@ -114,7 +132,7 @@ The expected outcome:
      Nice! I've marked this task as done: 
        [E][✓] project meeting (at: 2020/08/06 14:00:00)
 
-###  3.6 Deleting a Task `delete`
+###  4.6 Deleting a Task `delete`
 
 This will remove a task from the task list.  
 
@@ -127,7 +145,7 @@ The expected outcome:
      Noted. I've removed this task: 
        [E][✓] project meeting (at: 2020/08/06 14:00:00)
      Now you have 5 tasks in the list.
-###  3.7 Finding Task  `find`
+###  4.7 Finding Task  `find`
 
 Searches for all tasks containing specified string and prints them.  
 
@@ -141,7 +159,7 @@ The expected outcome:
      2.[D][✗] return book (by: 2020/10/17 01:15:00)
      3.[T][✗] cook pasta for dinner
 
-####  3.8 Find by Due Date `schedule`
+####  4.8 Find by Due Date `schedule`
 
 Searches and prints all tasks that on a specified date.  
 
@@ -156,7 +174,7 @@ The expected outcome:
      4.[E][✗] Apple stock split (at: 2020/09/03 10:00:15)
 
 
-###  3.9 Exiting the program `bye`
+###  4.9 Exiting the program `bye`
 
 Terminates the program.
 
@@ -168,7 +186,7 @@ The expected outcome:
 
      Bye. Hope to see you again soon!
 
-## 4. FAQ
+## 5. FAQ
 
 **Q**: Where are the tasks stored at after I close the program?
  **A**: They are located in `/data/tasks.txt` of the directory you ran the program in.
@@ -176,7 +194,7 @@ The expected outcome:
 **Q**: How do I transfer my saved tasks list to another Computer?  
 **A**: Run the application on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous `./data/tasks.txt` folder.
 
-## 5. Command Summary
+## 6. Command Summary
 
 <table>
 <tbody>
@@ -186,39 +204,39 @@ The expected outcome:
 </tr>
 <tr>
 <td>list</td>
-<td>`list`</td>
+<td><em>`list`</em></td>
 </tr>
 <tr>
 <td>todo</td>
-<td>`todo [TASK_NAME]`<br />e.g. `todo cook pasta for dinner`</td>
+<td><em>`todo [TASK_NAME]`</em><br /><em>e.g. `todo cook pasta for dinner`</em></td>
 </tr>
 <tr>
 <td>event</td>
-<td>`event [TASK_NAME] [at/ yyyy/MM/dd hh:mm:ss]`<br />e.g. `event Apple stock split /at 2020/09/3 10:00:15`</td>
+<td><em>`event [TASK_NAME] [at/ yyyy/MM/dd hh:mm:ss]`</em><br /><em>e.g. `event Apple stock split /at 2020/09/3 10:00:15`</em></td>
 </tr>
 <tr>
 <td>deadline</td>
-<td>`deadline [TASK_NAME] [by/ yyyy/MM/dd hh:mm:ss]`<br />e.g. `deadline CS2113 iP /by 2020/10/02 23:59:00`</td>
+<td><em>`deadline [TASK_NAME] [by/ yyyy/MM/dd hh:mm:ss]`</em><br /><em>e.g. `deadline CS2113 iP /by 2020/10/02 23:59:00`</em></td>
 </tr>
 <tr>
 <td>done</td>
-<td>`done &lt;INDEX&gt;`<br />e.g. `done 2`</td>
+<td><em>`done &lt;INDEX&gt;`</em><br /><em>e.g. `done 2`</em></td>
 </tr>
 <tr>
 <td>delete</td>
-<td>delete &lt;INDEX&gt;`<br />e.g. `delete 2`</td>
+<td><em>delete &lt;INDEX&gt;`</em><br /><em>e.g. `delete 2`</em></td>
 </tr>
 <tr>
 <td>find</td>
-<td>`find &lt;SEARCH_TERM&gt;`<br />e.g. `find Apple`</td>
+<td><em>`find &lt;SEARCH_TERM&gt;`</em><br /><em>e.g. `find Apple`</em></td>
 </tr>
 <tr>
 <td>schedule</td>
-<td>`schedule &lt;yyyy/MM/dd&gt;`<br />e.g. `schedule 2020/09/3`</td>
+<td><em>`schedule &lt;yyyy/MM/dd&gt;`</em><br /><em>e.g. `schedule 2020/09/3`</em></td>
 </tr>
 <tr>
 <td>bye</td>
-<td>`bye`</td>
+<td><em>`bye`</em></td>
 </tr>
 </tbody>
 </table>
