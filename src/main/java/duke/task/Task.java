@@ -14,7 +14,7 @@ public abstract class Task {
     }
 
     /**
-     * Get status icon of task.
+     * Gets status icon of task.
      *
      * @return Tick symbol if task is done, else Cross symbol.
      */
@@ -24,7 +24,7 @@ public abstract class Task {
     }
 
     /**
-     * Get status of task whether it is done or not.
+     * Gets status of task whether it is done or not.
      *
      * @return status of task.
      */

@@ -5,7 +5,7 @@ import duke.task.TaskList;
 import duke.ui.Ui;
 
 /**
- * Commence exit of Neko-bot.
+ * Commences exit of Neko-bot.
  */
 public class ExitCommand extends Command {
 

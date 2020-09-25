@@ -9,7 +9,7 @@ import duke.ui.Ui;
 import static duke.parser.Parser.EXCEPTION_INVALID_TASK_NUMBER;
 
 /**
- * Mark a Task as done.
+ * Marks a Task as done.
  */
 public class DoneCommand extends Command {
     public static final String NUMBER_REGEX = "^[0-9]+$";
