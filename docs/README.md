@@ -13,15 +13,15 @@ By: `Chan Jian Hao` Since: `September 2020` License: `MIT`
     + [3.2 Search](#32-search)
     + [3.3 Tasks Storage](#33-tasks-storage)
   * [4. Usage](#4-usage)
-    + [4.1 Listing all Tasks `list`](#41-listing-all-tasks--list-)
-    + [4.2 Adding a Todo task `todo`](#42-adding-a-todo-task--todo-)
-    + [4.3 Adding an Event task `event`](#43-adding-an-event-task--event-)
-    + [4.4 Adding a Deadline task `deadline`](#44-adding-a-deadline-task--deadline-)
-    + [4.5 Completing a Task `done`](#45-completing-a-task--done-)
-    + [4.6 Deleting a Task `delete`](#46-deleting-a-task--delete-)
-    + [4.7 Finding Task  `find`](#47-finding-task---find-)
-    + [4.8 Find by Due Date `schedule`](#48-find-by-due-date--schedule-)
-    + [4.9 Exiting the program `bye`](#49-exiting-the-program--bye-)
+    + [4.1 Listing all Tasks `list`](#41-listing-all-tasks-list)
+    + [4.2 Adding a Todo task `todo`](#42-adding-a-todo-task-todo)
+    + [4.3 Adding an Event task `event`](#43-adding-an-event-task-event)
+    + [4.4 Adding a Deadline task `deadline`](#44-adding-a-deadline-task--deadline)
+    + [4.5 Completing a Task `done`](#45-completing-a-task--done)
+    + [4.6 Deleting a Task `delete`](#46-deleting-a-task--delete)
+    + [4.7 Finding Task  `find`](#47-finding-task--find)
+    + [4.8 Find by Due Date `schedule`](#48-find-by-due-date-schedule)
+    + [4.9 Exiting the program `bye`](#49-exiting-the-program-bye)
   * [5. FAQ](#5-faq)
   * [6. Command Summary](#6-command-summary)
 
@@ -79,7 +79,8 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 **Command Format**
 
 -   Words in  `UPPER_CASE`  are the parameters to be supplied by the user e.g. in  `todo TASKNAME`,  `TASKNAME`  is a parameter which can be used as  `todo homework`.
-    
+   
+   
 ### 4.1 Listing all Tasks `list`
 This will list all task which the user has added.
 
@@ -91,6 +92,7 @@ Expected Outcome:
  2.[E][✗] project meeting (at: 2020/08/06 14:00:00)
  3.[D][✗] return book (by: 2020/10/17 01:15:00)
 ```
+
 ###  4.2 Adding a Todo task `todo`
 
 This will add a Todo task to the task list.
@@ -105,6 +107,7 @@ Got it. I've added this task:
 [T][✗] cook pasta for dinner
 You now have 4 tasks in the list.
 ```    
+
 
 ###  4.3 Adding an Event task `event`
 
@@ -124,6 +127,7 @@ The expected outcome:
     [E][✗] Apple stock split (at: 2020/09/03 10:00:15)
     You now have 5 tasks in the list.
 
+
 ###  4.4 Adding a Deadline task `deadline`
 
 This will add a deadline task to the task list
@@ -140,6 +144,8 @@ The expected outcome:
     Got it. I've added this task:
     [D][✗] CS2113 iP (by: 2020/10/02 11:59:00)
     You now have 6 tasks in the list.
+
+
 ###  4.5 Completing a Task `done`
 
 This will mark a task as completed.  
@@ -152,6 +158,7 @@ The expected outcome:
 
      Nice! I've marked this task as done: 
        [E][✓] project meeting (at: 2020/08/06 14:00:00)
+
 
 ###  4.6 Deleting a Task `delete`
 
@@ -166,6 +173,8 @@ The expected outcome:
      Noted. I've removed this task: 
        [E][✓] project meeting (at: 2020/08/06 14:00:00)
      Now you have 5 tasks in the list.
+
+
 ###  4.7 Finding Task  `find`
 
 Searches for all tasks containing specified string and prints them.  
@@ -179,6 +188,7 @@ The expected outcome:
     The following are results for keyword: oo
      2.[D][✗] return book (by: 2020/10/17 01:15:00)
      3.[T][✗] cook pasta for dinner
+
 
 ####  4.8 Find by Due Date `schedule`
 
@@ -195,6 +205,7 @@ The expected outcome:
      4.[E][✗] Apple stock split (at: 2020/09/03 10:00:15)
 
 
+
 ###  4.9 Exiting the program `bye`
 
 Terminates the program.
@@ -206,6 +217,8 @@ Sample Input: `bye`
 The expected outcome:
 
      Bye. Hope to see you again soon!
+
+
 
 ## 5. FAQ
 
