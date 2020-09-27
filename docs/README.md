@@ -132,7 +132,7 @@ The expected outcome:
 
 ###  4.4 Adding a Deadline task `deadline`
 
-This will add a deadline task to the task list
+This will add a deadline task to the task list.
 
 Format:
 1. `deadline task_name /by yyyy/MM/dd hh:mm:ss`  
@@ -226,11 +226,15 @@ The expected outcome:
 
 
 **Q**: Where are the tasks stored at after I close the program?
-**A**: They are located in `./data/tasks.txt` of the directory you ran the program in.
+
+> They are located in `./data/tasks.txt` of the directory you ran the program in.
+
  
 
 **Q**: How do I transfer my saved tasks list to another Computer?  
-**A**: Run the application on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous `./data/tasks.txt` folder.
+
+> Run the application on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous `./data/tasks.txt` folder.
+
 
 
 ## 6. Command Summary
