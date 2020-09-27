@@ -1,6 +1,5 @@
 package duke.task;
 
-
 /**
  * Abstract class for Task.
  */

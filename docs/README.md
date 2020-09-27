@@ -33,6 +33,7 @@ By: `Chan Jian Hao` Since: `September 2020` License: `MIT`
 Neko-bot is a simple desktop application used for managing and tracking tasks (e.g., Todos, Events, Deadlines).
 
 
+
 ## 2. Quick Start with Intellij
 Prerequisites: JDK 11, update Intellij to the most recent version.
 
@@ -50,9 +51,12 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
     ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ ░░░░░░░░░░▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄░░░░░░░░░ ░░░░░░░░▄▀░░░░░░░░░░░░▄░░░░░░░▀▄░░░░░░░ ░░░░░░░░█░░▄░░░░▄░░░░░░░░░░░░░░█░░░░░░░ ░░░░░░░░█░░░░░░░░░░░░▄█▄▄░░▄░░░█░▄▄▄░░░ ░▄▄▄▄▄░░█░░░░░░▀░░░░▀█░░▀▄░░░░░█▀▀░██░░ ░██▄▀██▄█░░░▄░░░░░░░██░░░░▀▀▀▀▀░░░░██░░ ░░▀██▄▀██░░░░░░░░▀░██▀░░░░░░░░░░░░░▀██░ ░░░░▀████░▀░░░░▄░░░██░░░▄█░░░░▄░▄█░░██░ ░░░░░░░▀█░░░░▄░░░░░██░░░░▄░░░▄░░▄░░░██░ ░░░░░░░▄█▄░░░░░░░░░░░▀▄░░▀▀▀▀▀▀▀▀░░▄▀░░ ░░░░░░█▀▀█████████▀▀▀▀████████████▀░░░░ ░░░░░░████▀░░███▀░░░░░░▀███░░▀██▀░░░░░░ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
     
     ____________________________________________________________  
+   
     Hello! I'm Neko-bot *meow*  
     What can I do for you?
+    
     ____________________________________________________________
+
 
 
 ## 3. Features
@@ -74,12 +78,10 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
  1. Automatically saves your task whenever you make changes.
  2. Available in a .txt file for easy reading and importing to other programs.
 
+
+
 ## 4. Usage
  
-**Command Format**
-
--   Words in  `UPPER_CASE`  are the parameters to be supplied by the user e.g. in  `todo TASKNAME`,  `TASKNAME`  is a parameter which can be used as  `todo homework`.
-   
    
 ### 4.1 Listing all Tasks `list`
 This will list all task which the user has added.
@@ -222,11 +224,14 @@ The expected outcome:
 
 ## 5. FAQ
 
+
 **Q**: Where are the tasks stored at after I close the program?
- **A**: They are located in `/data/tasks.txt` of the directory you ran the program in.
+**A**: They are located in `./data/tasks.txt` of the directory you ran the program in.
+ 
 
 **Q**: How do I transfer my saved tasks list to another Computer?  
 **A**: Run the application on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous `./data/tasks.txt` folder.
+
 
 ## 6. Command Summary
 

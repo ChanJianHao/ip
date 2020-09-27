@@ -21,7 +21,7 @@ public abstract class Command {
     }
 
     /**
-     * Abstract execute method for execution of commands.
+     * Abstraction of execute method for execution of commands.
      *
      * @param tasks   TaskList storing the tasks.
      * @param ui      User interaction management.
