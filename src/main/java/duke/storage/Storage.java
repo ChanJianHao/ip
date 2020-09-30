@@ -132,7 +132,7 @@ public class Storage {
                 }
             }
 
-        } catch (FileNotFoundException | DukeException | ParseException e) {
+        } catch (FileNotFoundException | DukeException | ParseException | StringIndexOutOfBoundsException e) {
             e.printStackTrace();
             throw new DukeException(INVALID_SAVED_TASK_DATA);
         }
