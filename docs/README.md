@@ -99,7 +99,7 @@ Expected Outcome:
 
 This will add a Todo task to the task list.
 
-Format: `todo task_name`  
+Format: `todo <TASK_DESCRIPTION>`  
 
 Sample Input: `todo cook pasta for dinner`  
 
@@ -117,7 +117,7 @@ This will add an event task to the task list.
 
 Format:
 
-1. `event task_name /at yyyy/MM/dd hh:mm:ss `
+1. `event <TASK_DESCRIPTION> /at <yyyy/MM/dd hh:mm:ss> `
 
 Sample Input:
 
@@ -135,7 +135,7 @@ The expected outcome:
 This will add a deadline task to the task list.
 
 Format:
-1. `deadline task_name /by yyyy/MM/dd hh:mm:ss`  
+1. `deadline <TASK_DESCRIPTION> /by <yyyy/MM/dd hh:mm:ss>`  
   
 Sample Input:
 
@@ -152,7 +152,7 @@ The expected outcome:
 
 This will mark a task as completed.  
 
-Format: `done task_id`  
+Format: `done <TASK_INDEX>`  
 
 Sample Input: `done 2`  
 
@@ -166,7 +166,7 @@ The expected outcome:
 
 This will remove a task from the task list.  
 
-Format: `delete task_id`  
+Format: `delete <TASK_INDEX>`  
 
 Sample Input: `delete 2`  
 
@@ -179,9 +179,9 @@ The expected outcome:
 
 ###  4.7 Finding Task  `find`
 
-Searches for all tasks containing specified string and prints them.  
+Searches for all tasks containing specified keyword and prints them.  
 
-Format: `find search_term`  
+Format: `find <KEYWORD>`  
 
 Sample Input: `find oo`  
 
@@ -196,7 +196,7 @@ The expected outcome:
 
 Searches and prints all tasks that on a specified date.  
 
-Format: `schedule yyyy/MM/dd`  
+Format: `schedule <yyyy/MM/dd>`  
 
 Sample Input: `schedule 2020/09/3`
  
