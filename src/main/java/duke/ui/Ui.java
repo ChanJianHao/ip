@@ -105,11 +105,11 @@ public class Ui {
      * @param newTask task to be added.
      */
     public void addTaskInteraction(TaskList tasks, Task newTask) {
-        System.out.println("Got it. I've added this task:");
+        System.out.println(" Got it. I've added this task:");
         System.out.println(newTask.toString());
 
         int size = tasks.getTotal();
-        System.out.println("You now have " + size + " tasks in the list.");
+        System.out.println(" You now have " + size + " tasks in the list.");
     }
 
     /**
