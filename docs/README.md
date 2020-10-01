@@ -239,47 +239,14 @@ The expected outcome:
 
 ## 6. Command Summary
 
-<table>
-<tbody>
-<tr>
-<th>Command</th>
-<th>Format &amp; Examples</th>
-</tr>
-<tr>
-<td>list</td>
-<td><em>`list`</em></td>
-</tr>
-<tr>
-<td>todo</td>
-<td><em>`todo [TASK_NAME]`</em><br /><em>e.g. `todo cook pasta for dinner`</em></td>
-</tr>
-<tr>
-<td>event</td>
-<td><em>`event [TASK_NAME] [at/ yyyy/MM/dd hh:mm:ss]`</em><br /><em>e.g. `event Apple stock split /at 2020/09/3 10:00:15`</em></td>
-</tr>
-<tr>
-<td>deadline</td>
-<td><em>`deadline [TASK_NAME] [by/ yyyy/MM/dd hh:mm:ss]`</em><br /><em>e.g. `deadline CS2113 iP /by 2020/10/02 23:59:00`</em></td>
-</tr>
-<tr>
-<td>done</td>
-<td><em>`done &lt;INDEX&gt;`</em><br /><em>e.g. `done 2`</em></td>
-</tr>
-<tr>
-<td>delete</td>
-<td><em>delete &lt;INDEX&gt;`</em><br /><em>e.g. `delete 2`</em></td>
-</tr>
-<tr>
-<td>find</td>
-<td><em>`find &lt;SEARCH_TERM&gt;`</em><br /><em>e.g. `find Apple`</em></td>
-</tr>
-<tr>
-<td>schedule</td>
-<td><em>`schedule &lt;yyyy/MM/dd&gt;`</em><br /><em>e.g. `schedule 2020/09/3`</em></td>
-</tr>
-<tr>
-<td>bye</td>
-<td><em>`bye`</em></td>
-</tr>
-</tbody>
-</table>
+|Command                     |Format & Examples                                               |
+|---                                   |---                                                   |
+| list                      | `list`                             |
+| todo                  | `todo <TASK_DESCRIPTION>` e.g. `todo cook pasta for dinner`  |
+| event                    | `event <TASK_DESCRIPTION> /at <yyyy/MM/dd hh:mm:ss>` e.g. `event Apple stock split /at 2020/09/3 10:00:15`     |
+| deadline                  | `deadline <TASK_DESCRIPTION> /by <yyyy/MM/dd hh:mm:ss>` e.g. `deadline CS2113 iP /by 2020/10/02 23:59:00`                                   |
+| done                        | `done <TASK_INDEX>` e.g. `done 2`                                 |
+| delete               | delete `<TASK_INDEX>` e.g. `delete 2`                                 |
+| find  | `find <KEYWORD>` e.g. `find Apple`                                 |
+| schedule                       | `schedule <yyyy/MM/dd>` e.g. `schedule 2020/09/3`                                                |
+| bye                                 |`bye`                                                 |
