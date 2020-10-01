@@ -1,5 +1,6 @@
 
 
+
 #  Neko-bot  User Guide
 By: `Chan Jian Hao` Since: `September 2020` License: `MIT`
 
@@ -239,14 +240,14 @@ The expected outcome:
 
 ## 6. Command Summary
 
-|Command                     |Format & Examples                                               |
-|---                                   |---                                                   |
-| list                      | `list`                             |
-| todo                  | `todo <TASK_DESCRIPTION>` e.g. `todo cook pasta for dinner`  |
-| event                    | `event <TASK_DESCRIPTION> /at <yyyy/MM/dd hh:mm:ss>` e.g. `event Apple stock split /at 2020/09/3 10:00:15`     |
-| deadline                  | `deadline <TASK_DESCRIPTION> /by <yyyy/MM/dd hh:mm:ss>` e.g. `deadline CS2113 iP /by 2020/10/02 23:59:00`                                   |
+|Command                      |Format & Examples                                               |
+|---                          |---                                                   |
+| list                        | `list`                             |
+| todo                      | `todo <TASK_DESCRIPTION>` e.g. `todo cook pasta for dinner`  |
+| event                       | `event <TASK_DESCRIPTION> /at <yyyy/MM/dd hh:mm:ss>` e.g. `event Apple stock split /at 2020/09/3 10:00:15`     |
+| deadline                    | `deadline <TASK_DESCRIPTION> /by <yyyy/MM/dd hh:mm:ss>` e.g. `deadline CS2113 iP /by 2020/10/02 23:59:00`                                   |
 | done                        | `done <TASK_INDEX>` e.g. `done 2`                                 |
-| delete               | delete `<TASK_INDEX>` e.g. `delete 2`                                 |
-| find  | `find <KEYWORD>` e.g. `find Apple`                                 |
-| schedule                       | `schedule <yyyy/MM/dd>` e.g. `schedule 2020/09/3`                                                |
+| delete                      | `delete <TASK_INDEX>` e.g. `delete 2`                                 |
+| find              | `find <KEYWORD>` e.g. `find Apple`                                 |
+| schedule                    | `schedule <yyyy/MM/dd>` e.g. `schedule 2020/09/3`             |
 | bye                                 |`bye`                                                 |
